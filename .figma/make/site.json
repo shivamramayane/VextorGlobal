@@ -1,0 +1,10 @@
+{
+  "description": "Explore VextorGlobal’s end-to-end technology services, from software and AI to cloud and cybersecurity, helping businesses worldwide innovate and grow.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
