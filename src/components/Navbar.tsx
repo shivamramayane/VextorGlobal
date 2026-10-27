@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react"
@@ -23,19 +23,19 @@ const menus = {
   resources: {
     label: "Resources",
     groups: [
-      { title: "HOW WE WORK", items: [["Our approach", "Discover, define, deliver, evolve"], ["Selected impact", "Transformation in business terms"], ["About VextorGlobal", "Meet the people behind the work"]] },
-      { title: "START A CONVERSATION", items: [["Discuss a project", "Talk with a senior specialist"], ["Explore our capabilities", "Find the right place to begin"]] },
+      { title: "HOW WE WORK", items: [["Our approach", "Discover, define, deliver, evolve"], ["Engagement models", "Pilot, project, or dedicated team"], ["About VextorGlobal", "Our company and operating principles"]] },
+      { title: "LEARN & EXPLORE", items: [["Insights", "Ideas on product, engineering, and delivery"], ["Customers", "Client stories and references / TODO"], ["Discuss a project", "Talk with a senior specialist"]] },
     ],
   },
 } as const
 
 const routes: Record<string, string> = {
-  "Digital products": "/expertise#digital-products",
-  "Intelligent systems": "/expertise#intelligent-systems",
-  "Experience design": "/expertise#experience-design",
-  "Cloud & security": "/expertise#cloud-security",
-  "Custom software": "/expertise#custom-software",
-  "IT consulting": "/expertise#it-consulting",
+  "Digital products": "/expertise/digital-products",
+  "Intelligent systems": "/expertise/intelligent-systems",
+  "Experience design": "/expertise/experience-design",
+  "Cloud & security": "/expertise/cloud-security",
+  "Custom software": "/expertise/custom-software",
+  "IT consulting": "/expertise/it-consulting",
   "Launch a digital product": "/expertise#digital-products",
   "Modernize operations": "/expertise#custom-software",
   "Scale with confidence": "/expertise#cloud-security",
@@ -45,12 +45,17 @@ const routes: Record<string, string> = {
   "Our approach": "/approach",
   "Selected impact": "/work",
   "About VextorGlobal": "/company",
+  "Engagement models": "/pricing",
+  "Insights": "/insights",
+  "Customers": "/customers",
   "Discuss a project": "/contact",
   "Explore our capabilities": "/expertise",
 }
 
 const simpleLinks = [
   ["Impact", "/work"],
+  ["Customers", "/customers"],
+  ["Pricing", "/pricing"],
   ["Company", "/company"],
 ] as const
 
@@ -59,6 +64,7 @@ export default function Navbar() {
   const [activeMenu, setActiveMenu] = useState<keyof typeof menus | null>(null)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const mobileToggleRef = useRef<HTMLButtonElement>(null)
   const { scrollY, scrollYProgress } = useScroll()
 
   useMotionValueEvent(scrollY, "change", (latest) => setScrolled(latest > 24))
@@ -75,8 +81,30 @@ export default function Navbar() {
     return () => window.removeEventListener("keydown", onKeyDown)
   }, [activeMenu, mobileOpen])
 
+  useEffect(() => {
+    if (!mobileOpen) return
+    const panel = document.getElementById("mobile-navigation")
+    const focusable = panel?.querySelectorAll<HTMLElement>("a[href], button:not([disabled])")
+    const first = focusable?.[0]
+    const last = focusable?.[focusable.length - 1]
+    first?.focus()
+    function trapFocus(event: KeyboardEvent) {
+      if (event.key !== "Tab" || !first || !last) return
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault()
+        first.focus()
+      }
+    }
+    window.addEventListener("keydown", trapFocus)
+    return () => window.removeEventListener("keydown", trapFocus)
+  }, [mobileOpen])
+
   function closeMenus() {
     setActiveMenu(null)
+    if (mobileOpen) mobileToggleRef.current?.focus()
     setMobileOpen(false)
   }
 
@@ -100,7 +128,7 @@ export default function Navbar() {
           <Link className="header-action header-action-secondary" href="/contact">Get in touch <span aria-hidden="true">↗</span></Link>
         </div>
 
-        <button className="mobile-menu-toggle" type="button" aria-label={mobileOpen ? "Close menu" : "Open menu"} aria-expanded={mobileOpen} onClick={() => setMobileOpen(!mobileOpen)}><span /><span /></button>
+        <button ref={mobileToggleRef} className="mobile-menu-toggle" type="button" aria-label={mobileOpen ? "Close menu" : "Open menu"} aria-expanded={mobileOpen} aria-controls="mobile-navigation" onClick={() => setMobileOpen(!mobileOpen)}><span /><span /></button>
       </div>
 
       <AnimatePresence>
@@ -119,11 +147,11 @@ export default function Navbar() {
     </motion.header>
 
     <AnimatePresence>
-      {mobileOpen && <motion.div className="mobile-menu-panel" initial={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }} animate={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }} exit={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }} transition={{ duration: .4, ease: [0.22, 1, 0.36, 1] }}>
+      {mobileOpen && <motion.nav id="mobile-navigation" aria-label="Mobile navigation" className="mobile-menu-panel" initial={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }} animate={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }} exit={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }} transition={{ duration: .4, ease: [0.22, 1, 0.36, 1] }}>
         <p className="mobile-menu-label">EXPLORE VEXTORGLOBAL</p>
-        {[["Expertise", "/expertise"], ["Our approach", "/approach"], ["Selected impact", "/work"], ["Company", "/company"], ["Contact", "/contact"]].map(([label, href], index) => <Link key={href} href={href} onClick={closeMenus}><span>0{index + 1}</span>{label}<i aria-hidden="true">↗</i></Link>)}
+        {[["Expertise", "/expertise"], ["Our approach", "/approach"], ["Selected impact", "/work"], ["Customers", "/customers"], ["Pricing", "/pricing"], ["Insights", "/insights"], ["Company", "/company"], ["Contact", "/contact"]].map(([label, href], index) => <Link key={href} href={href} onClick={closeMenus}><span>{String(index + 1).padStart(2, "0")}</span>{label}<i aria-hidden="true">↗</i></Link>)}
         <p className="mobile-menu-foot">Technology without borders. Impact without limits.</p>
-      </motion.div>}
+      </motion.nav>}
     </AnimatePresence>
   </>
 }

@@ -5,7 +5,7 @@ import Navbar from "./Navbar"
 import Footer from "./Footer"
 import ProductShowcase from "./ProductShowcase"
 import { ArrowIcon, ButtonLink, Card, Eyebrow, Heading, Marquee, Reveal, StatCounter } from "./ui"
-import { approachSteps, capabilities, caseStudies, industries } from "../content"
+import { approachSteps, capabilities, caseStudies, engagementModels, faqs, freeTools, projectConcepts, stackTools } from "../content"
 
 const principles = [
   ["Business-first strategy", "Tie technology decisions to clear commercial value."],
@@ -20,19 +20,37 @@ const engineeringSignals = [
   ["04", "Operational clarity", "Use observability and thoughtful operations to keep teams in control."],
 ] as const
 
-const stackSignals = ["Product strategy", "Web platforms", "Mobile apps", "Commerce", "Custom software", "Applied AI", "Cloud architecture", "DevOps", "Cybersecurity", "Observability"] as const
+const outcomeMeasures = [
+  ["01", "Customer adoption", "Activation, task completion, or retention—where they fit the product."],
+  ["02", "Service reliability", "Availability, error rates, and recovery time for critical services."],
+  ["03", "Delivery confidence", "Release cadence, lead time, and the predictability of delivery."],
+  ["04", "Operational efficiency", "Time saved, fewer handoffs, or less repetitive work."],
+] as const
 
-const industryLinks = ["/work#financial-services", "/company#industries", "/work#retail-logistics", "/work#logistics", "/company#industries"] as const
+const trustSignals = ["Senior-led teams", "Fixed-scope pilots", "Response within 1 business day", "NDA by default"] as const
 
 function GlobeVisual() {
-  return <div className="hero-visual" role="img" aria-label="Abstract illustration of connected global technology systems">
-    <div className="visual-label"><span>Vextor Intelligence / 01</span><b>Systems connected</b></div>
-    <span className="orbit orbit-one" /><span className="orbit orbit-two" /><span className="orbit orbit-three" />
-    <div className="globe-core"><span className="core-ring" /><strong>VG</strong><small>Global core</small></div>
-    <div className="node node-a"><i />London<small>Cloud</small></div>
-    <div className="node node-b"><i />Singapore<small>Product</small></div>
-    <div className="node node-c"><i />New York<small>AI systems</small></div>
-    <div className="visual-footer"><span className="visual-pulse" />Delivering across <b>6 continents</b><div className="bars"><i /><i /><i /><i /><i /></div></div>
+  return <div className="hero-visual" role="img" aria-label="Animated map of product, data, cloud, and operations connected through one technology team">
+    <div className="visual-label"><span>VextorGlobal / Systems map</span><b>Connected by design</b></div>
+    <div className="system-scene" aria-hidden="true">
+      <svg className="system-wires" viewBox="0 0 600 420" fill="none">
+        <path className="system-wire" d="M130 115 C190 115 205 178 270 190" />
+        <path className="system-wire system-wire-alt" d="M470 100 C410 100 395 174 330 190" />
+        <path className="system-wire" d="M478 295 C410 295 397 238 330 222" />
+        <path className="system-wire system-wire-alt" d="M145 303 C203 303 212 241 270 222" />
+        <circle className="wire-point" cx="130" cy="115" r="4" /><circle className="wire-point" cx="470" cy="100" r="4" />
+        <circle className="wire-point" cx="478" cy="295" r="4" /><circle className="wire-point" cx="145" cy="303" r="4" />
+        <circle className="signal-dot" cx="130" cy="115" r="4" />
+      </svg>
+      <div className="system-node system-node-product"><span>01 / EXPERIENCE</span><strong>Product</strong><small>Useful by design</small><i>↗</i></div>
+      <div className="system-node system-node-data"><span>02 / INTELLIGENCE</span><strong>Data & AI</strong><small>Signals into action</small><i>↗</i></div>
+      <div className="system-node system-node-cloud"><span>03 / FOUNDATION</span><strong>Cloud</strong><small>Ready to scale</small><i>↗</i></div>
+      <div className="system-node system-node-operations"><span>04 / DELIVERY</span><strong>Operations</strong><small>Built to keep moving</small><i>↗</i></div>
+      <div className="system-core-card"><span className="core-card-mark">VG</span><div><small>ONE CONNECTED TEAM</small><strong>Ideas into<br />working systems.</strong></div><b>V / 01</b></div>
+      <span className="scene-index scene-index-top">GLOBAL DELIVERY <i>•</i> 24/7 READY</span>
+      <span className="scene-index scene-index-bottom">STRATEGY <b>—</b> DESIGN <b>—</b> ENGINEERING</span>
+    </div>
+    <div className="visual-footer"><span className="visual-pulse" />Six capabilities. One connected team.<span className="visual-footer-status">SYSTEM MAP <b>06</b></span></div>
   </div>
 }
 
@@ -45,18 +63,19 @@ export default function Home() {
       <div className="hero-layout">
         <div className="hero-copy">
           <Eyebrow>GLOBAL TECHNOLOGY PARTNER</Eyebrow>
-          <Heading id="home-title" as="h1" className="home-title">Technology that moves <em>business forward.</em></Heading>
+          <Heading id="home-title" as="h1" className="home-title"><span className="hero-title-line">Technology that moves</span><em className="hero-title-accent">business forward.</em></Heading>
           <p className="hero-lead">We design, build, and modernize the digital systems ambitious organizations depend on—across every platform, market, and stage of growth.</p>
           <div className="hero-actions">
             <ButtonLink href="/contact" variant="solid">Discuss your project</ButtonLink>
             <ButtonLink href="#starting-point" variant="outline">Explore our capabilities</ButtonLink>
           </div>
+          <div className="hero-trust-row">{trustSignals.map((item, index) => <span key={item}>{index > 0 && <i aria-hidden="true" />} {item}</span>)}</div>
         </div>
         <GlobeVisual />
       </div>
       <div className="hero-bottomline">
         <div className="hero-proof-items" aria-label="VextorGlobal at a glance">
-          <span><b>42+</b> markets served</span><i /><span><b>96%</b> client retention</span><i /><span><b>15 yrs</b> combined expertise</span><i /><span><b>6</b> continents</span>
+          <span><b>6</b> capabilities</span><i /><span><b>4</b> delivery stages</span><i /><span><b>3</b> engagement models</span>
         </div>
         <a className="scroll-cue" href="#starting-point"><span className="scroll-cue-line" />SCROLL TO EXPLORE</a>
       </div>
@@ -70,15 +89,15 @@ export default function Home() {
         <p>Choose the outcome that matters most right now. Start with the capability built to move it forward, then bring in more of the team as the work grows.</p>
       </div>
       <div className="starting-grid">
-        {capabilities.map((item) => <Link className="starting-card" href={`#map-${item.id}`} key={item.id}>
+        {capabilities.map((item, index) => <Link className="starting-card" href={`#map-${item.id}`} key={item.id}>
           <span>{item.category}</span><strong>{item.title}</strong><i aria-hidden="true">↗</i>
         </Link>)}
       </div>
       <Link className="text-arrow-link explore-all" href="/expertise">Or explore all capabilities <span aria-hidden="true">↗</span></Link>
       <div className="stat-strip" aria-label="VextorGlobal experience">
-        <StatCounter value={42} suffix="+" label="Markets served" />
-        <StatCounter value={96} suffix="%" label="Client retention" />
-        <StatCounter value={15} suffix=" yrs" label="Combined expertise" />
+        <StatCounter value={6} label="Capabilities" />
+        <StatCounter value={4} label="Delivery stages" />
+        <StatCounter value={engagementModels.length} label="Engagement models" />
       </div>
     </section>
 
@@ -93,9 +112,10 @@ export default function Home() {
         {capabilities.map((item, index) => <Reveal className="suite-card-wrap" delay={index * .045} key={item.id}>
           <Card className="suite-card">
             <div className="suite-card-top"><span>{item.number}</span><span className="suite-arrow" aria-hidden="true">↗</span></div>
+            <figure className="suite-card-image"><img src={item.image} alt={item.imageAlt} loading="lazy" /></figure>
             <Eyebrow>{item.category}</Eyebrow>
             <h3>{item.title}</h3><p>{item.text}</p>
-            <div className="suite-card-bottom"><span>{item.tags}</span><Link href={`/expertise#${item.id}`}>Explore <span aria-hidden="true">↗</span></Link></div>
+            <div className="suite-card-bottom"><span>{item.tags}</span><Link href={`/expertise/${item.id}`}>Explore <span aria-hidden="true">↗</span></Link></div>
           </Card>
         </Reveal>)}
       </div>
@@ -115,39 +135,33 @@ export default function Home() {
     </section>
 
     <section className="proof-section section-shell" id="impact">
-      <div className="proof-intro"><Eyebrow number="04">WHY TEAMS TRUST VEXTORGLOBAL</Eyebrow><Heading>Proof, not <em>promises.</em></Heading><p>Business outcomes are the measure of good technology. Here’s what the work has changed.</p></div>
+      <div className="proof-intro"><Eyebrow number="04">MEASURE WHAT MATTERS</Eyebrow><Heading>Outcomes are the <em>measure.</em></Heading><p>We agree the right signal for each project, establish a baseline, and review progress against it together.</p></div>
       <div className="proof-content">
-        <div className="proof-stat-grid">
-          <StatCounter value={3.2} decimals={1} suffix="×" label="Faster operations" />
-          <StatCounter value={41} suffix="%" label="Lower cloud spend" />
-          <StatCounter value={14} label="Markets unified" />
-          <StatCounter value={96} suffix="%" label="Client retention" />
+        <div className="proof-stat-grid outcome-measure-grid">
+          {outcomeMeasures.map(([number, title, detail]) => <article className="outcome-measure" key={number}><span>{number} / POSSIBLE SIGNAL</span><h3>{title}</h3><p>{detail}</p></article>)}
         </div>
-        <blockquote className="client-quote">
-          <span className="quote-mark" aria-hidden="true">“</span>
-          <p>VextorGlobal didn’t just ship software. They transformed how our teams operate across 14 markets.</p>
-          <footer><span className="quote-avatar" aria-hidden="true">TD</span><span><strong>Transformation Director</strong><small>Global logistics enterprise</small></span></footer>
-        </blockquote>
+        <div className="outcome-method"><Eyebrow>HOW WE TRACK PROGRESS</Eyebrow><h3>Baseline. Target. <em>Evidence.</em></h3><ol><li><span>01</span>Understand the starting point and source of truth.</li><li><span>02</span>Agree a useful target that fits the project.</li><li><span>03</span>Review evidence together at each milestone.</li></ol></div>
       </div>
     </section>
 
-    <section className="network-section section-shell" id="industries">
-      <div className="network-heading"><div><Eyebrow number="05">THE CUSTOMER NETWORK</Eyebrow><Heading>Built for <em>complex industries.</em></Heading></div><div className="network-count"><strong>42+</strong><span>markets served<br />around the world</span></div></div>
-      <p className="network-intro">We work across industries where dependable technology and thoughtful delivery make a measurable difference.</p>
-      <div className="industry-grid">
-        {industries.map((industry, index) => <Reveal key={industry} delay={index * .06}><Link href={industryLinks[index]} className="industry-card" aria-label={`Explore ${industry} engagements`}><span>VEXTORGLOBAL / {String(index + 1).padStart(2, "0")}</span><strong>{industry}</strong><i aria-hidden="true">↗</i></Link></Reveal>)}
+    <section className="network-section section-shell" id="customers">
+      <div className="network-heading"><div><Eyebrow number="05">FICTIONAL PROJECT CONCEPTS</Eyebrow><Heading>Ideas with <em>room to grow.</em></Heading></div><Link className="text-arrow-link" href="/customers">Explore concepts <span aria-hidden="true">↗</span></Link></div>
+      <p className="network-intro">A separate concept portfolio: fictional company and product names used to show the kinds of challenges our team can help shape. These are not client references or shipped work.</p>
+      <div className="customer-logo-grid sample-client-grid" aria-label="Fictional project concepts">
+        {projectConcepts.slice(0, 3).map((project, index) => <Reveal key={project.name} delay={index * .04}><article className="sample-client-card"><span>CONCEPT PROJECT / 0{index + 1}</span><strong>{project.name}</strong><small>{project.industry}</small><b>{project.product}</b><small className="concept-project-lead">{project.lead}</small><p>{project.brief}</p></article></Reveal>)}
       </div>
     </section>
 
     <section className="stack-section section-shell">
-      <div className="section-heading"><div><Eyebrow number="06">CONNECTED TECHNOLOGY</Eyebrow><Heading>Plays well with <em>your systems.</em></Heading></div><p>Bring product, engineering, cloud, and operations together across the platforms your business depends on.</p></div>
-      <div className="stack-grid">{stackSignals.map((item, index) => <Reveal key={item} delay={index * .035}><div className="stack-tile"><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong><i aria-hidden="true">↗</i></div></Reveal>)}</div>
+      <div className="section-heading"><div><Eyebrow number="06">TECHNOLOGY ECOSYSTEM</Eyebrow><Heading>Built to fit <em>your digital estate.</em></Heading></div><p>Examples from the stack your team identified. Project-specific integrations and experience are confirmed during discovery.</p></div>
+      <div className="stack-grid">{stackTools.map((item, index) => <Reveal key={item} delay={index * .035}><div className="stack-tile"><span className="stack-letter" aria-hidden="true">{item.charAt(0)}</span><strong>{item}</strong><i aria-hidden="true">↗</i></div></Reveal>)}</div>
+      <Marquee label="Technology ecosystem examples" items={[...stackTools, ...stackTools]} slow />
     </section>
 
     <section className="engineering-section section-shell">
       <div className="engineering-heading"><Eyebrow number="07">ENGINEERING FOR THE LONG TERM</Eyebrow><Heading>Enterprise-grade, <em>by design.</em></Heading><p>Resilience is built into the decisions behind the product—not added after launch.</p></div>
       <div className="engineering-grid">
-        {engineeringSignals.map(([number, title, text]) => <Reveal key={number}><Card className="engineering-card"><span>{number}</span><h3>{title}</h3><p>{text}</p><i aria-hidden="true">↗</i></Card></Reveal>)}
+        {engineeringSignals.map(([number, title, text], index) => <Reveal key={number}><Card className="engineering-card"><span>{number}</span><h3>{title}</h3><p>{text}</p><i aria-hidden="true">↗</i></Card></Reveal>)}
       </div>
     </section>
 
@@ -158,19 +172,29 @@ export default function Home() {
       </div>
     </section>
 
+    <section className="value-tools-section section-shell" id="resources">
+      <div className="section-heading"><div><Eyebrow number="09">PRACTICAL STARTING POINTS</Eyebrow><Heading>Value before <em>the sales call.</em></Heading></div><p>Use these prompts to organize your goals and questions before a first conversation.</p></div>
+      <div className="value-tools-grid">{freeTools.map((tool, index) => <Reveal key={tool.number}><Link className="value-tool-card" href={tool.href}><span>{tool.number} / WORKSHEET</span><strong>{tool.title}</strong><p>{tool.detail}</p><i>{tool.action} <b aria-hidden="true">↗</b></i></Link></Reveal>)}</div>
+    </section>
+
     <section className="case-section section-shell" id="selected-work">
-      <div className="section-heading"><div><Eyebrow number="09">SELECTED IMPACT</Eyebrow><Heading>Transformation you can <em>measure.</em></Heading></div><p>A selection of engagements where technology became a genuine commercial advantage.</p></div>
+      <div className="section-heading"><div><Eyebrow number="10">CONCEPT PROJECTS</Eyebrow><Heading>Designed for <em>real-world needs.</em></Heading></div><p>Fictional project concepts explore practical product and platform challenges. They are not client work or measured outcomes.</p></div>
       <div className="case-grid">
         {caseStudies.map((study, index) => <Reveal className="case-card-wrap" delay={index * .08} key={study.id}><Link className="case-card" href={`/work#${study.id}`}>
-          <span className="case-card-number">CASE {study.number}</span><Eyebrow>{study.industry}</Eyebrow><h3>{study.title}</h3><div><span>{study.outcome}</span><i aria-hidden="true">↗</i></div>
+          <span className="case-card-number">CONCEPT {study.number}</span><Eyebrow>{study.industry}</Eyebrow><h3>{study.client} · {study.product}</h3><p>{study.title}</p><div><span>{study.outcome}</span><i aria-hidden="true">↗</i></div>
         </Link></Reveal>)}
       </div>
       <ButtonLink href="/work" variant="text">Explore selected impact</ButtonLink>
     </section>
 
+    <section className="faq-section section-shell" id="faq">
+      <div className="section-heading"><div><Eyebrow number="11">COMMON QUESTIONS</Eyebrow><Heading>Good to know <em>before we start.</em></Heading></div><p>Some of the practical questions teams bring to the first conversation.</p></div>
+      <div className="faq-list">{faqs.map((faq, index) => <details className="faq-item" key={faq.question}><summary><span>{String(index + 1).padStart(2, "0")}</span>{faq.question}<i aria-hidden="true">+</i></summary><p>{faq.answer}</p></details>)}</div>
+    </section>
+
     <section className="final-cta">
       <div className="cta-visual" aria-hidden="true"><span className="cta-orbit cta-orbit-one" /><span className="cta-orbit cta-orbit-two" /><i className="cta-core">VG</i></div>
-      <div className="cta-content"><Eyebrow>READY WHEN YOU ARE</Eyebrow><Heading>See VextorGlobal on <em>your own data.</em></Heading><p>A conversation with a senior specialist is a clear place to start.</p><div className="cta-actions"><ButtonLink href="/contact" variant="solid">Discuss a project</ButtonLink><a href="mailto:hello@vextorglobal.com">hello@vextorglobal.com <span aria-hidden="true">↗</span></a></div><div className="cta-trust">Senior-led delivery <i /> Global expertise <i /> Built around your goals</div></div>
+      <div className="cta-content"><Eyebrow>READY WHEN YOU ARE</Eyebrow><Heading>Bring a clear challenge. <em>Build the next step.</em></Heading><p>A conversation with a senior specialist is a clear place to start.</p><div className="cta-actions"><ButtonLink href="/contact" variant="solid">Discuss a project</ButtonLink><a href="mailto:hello@vextorglobal.com">hello@vextorglobal.com <span aria-hidden="true">↗</span></a></div><div className="cta-trust">{trustSignals.map((item, index) => <span key={item}>{index > 0 && <i />} {item}</span>)}</div></div>
     </section>
 
     <Footer />

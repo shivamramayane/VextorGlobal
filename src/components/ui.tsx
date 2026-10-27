@@ -8,12 +8,13 @@ import { useEffect, useRef } from "react"
 type HeadingProps = {
   as?: "h1" | "h2" | "h3"
   children: ReactNode
+  accent?: string
   className?: string
   id?: string
 }
 
-export function Heading({ as: Tag = "h2", children, className = "", id }: HeadingProps) {
-  return <Tag id={id} className={`display-heading ${className}`}>{children}</Tag>
+export function Heading({ as: Tag = "h2", children, accent, className = "", id }: HeadingProps) {
+  return <Tag id={id} className={`display-heading ${className}`}>{children}{accent && <> <em>{accent}</em></>}</Tag>
 }
 
 export function Eyebrow({ children, number }: { children: ReactNode; number?: string }) {
@@ -58,9 +59,9 @@ export function StatCounter({ value, prefix = "", suffix = "", decimals = 0, lab
   </div>
 }
 
-export function Marquee({ items, label }: { items: string[]; label: string }) {
+export function Marquee({ items, label, slow = false }: { items: string[]; label: string; slow?: boolean }) {
   return <div className="marquee" role="group" aria-label={label}>
-    <div className="marquee-track">
+    <div className={`marquee-track ${slow ? "marquee-track-slow" : ""}`}>
       {[0, 1].map((copy) => <div className="marquee-group" key={copy} aria-hidden={copy === 1}>
         {items.map((item, index) => <span className="marquee-item" key={`${copy}-${item}-${index}`}>{item}<i aria-hidden="true">✳</i></span>)}
       </div>)}
@@ -70,4 +71,8 @@ export function Marquee({ items, label }: { items: string[]; label: string }) {
 
 export function ArrowIcon() {
   return <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+}
+
+export function InPageNav({ links }: { links: Array<{ label: string; href: string }> }) {
+  return <nav className="in-page-nav" aria-label="On this page">{links.map((link) => <a href={link.href} key={link.href}>{link.label}</a>)}</nav>
 }

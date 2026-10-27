@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import type { ReactNode } from "react"
 import { IBM_Plex_Mono, Instrument_Serif, Manrope, Outfit } from "next/font/google"
 import "../src/index.css"
+import SmoothScrollProvider from "../src/components/SmoothScrollProvider"
 
 const bodyFont = Manrope({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-manrope", display: "swap" })
 const displayFont = Outfit({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-outfit", display: "swap" })
@@ -26,5 +27,5 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
-  return <html lang="en" className={`${bodyFont.variable} ${displayFont.variable} ${editorialFont.variable} ${monoFont.variable}`}><body>{children}</body></html>
+  return <html lang="en" className={`${bodyFont.variable} ${displayFont.variable} ${editorialFont.variable} ${monoFont.variable}`}><body><SmoothScrollProvider>{children}</SmoothScrollProvider></body></html>
 }

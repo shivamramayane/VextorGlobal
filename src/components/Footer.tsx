@@ -1,8 +1,8 @@
 import Link from "next/link"
 
 const footerGroups = [
-  { label: "CAPABILITIES", links: [["Digital products", "/expertise#digital-products"], ["Intelligent systems", "/expertise#intelligent-systems"], ["Cloud & security", "/expertise#cloud-security"], ["Experience design", "/expertise#experience-design"]] },
-  { label: "COMPANY", links: [["Our approach", "/approach"], ["Selected impact", "/work"], ["About us", "/company"], ["Start a project", "/contact"]] },
+  { label: "CAPABILITIES", links: [["Digital products", "/expertise/digital-products"], ["Intelligent systems", "/expertise/intelligent-systems"], ["Cloud & security", "/expertise/cloud-security"], ["Experience design", "/expertise/experience-design"]] },
+  { label: "EXPLORE", links: [["Customers", "/customers"], ["Engagement models", "/pricing"], ["Insights", "/insights"], ["Our approach", "/approach"], ["Selected impact", "/work"], ["About us", "/company"]] },
   { label: "GET IN TOUCH", links: [["hello@vextorglobal.com", "mailto:hello@vextorglobal.com"], ["Contact form", "/contact"]] },
 ] as const
 

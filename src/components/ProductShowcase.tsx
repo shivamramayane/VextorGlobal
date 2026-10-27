@@ -38,7 +38,7 @@ export default function ProductShowcase() {
                 <span className="map-signal">{activeCapability.signal}</span>
               </motion.div>
             </AnimatePresence>
-            <Link className="text-arrow-link" href={`/expertise#${activeCapability.id}`}>Explore this capability <span aria-hidden="true">↗</span></Link>
+                <Link className="text-arrow-link" href={`/expertise/${activeCapability.id}`}>Explore this capability <span aria-hidden="true">↗</span></Link>
           </div>
 
           <nav className="capability-map-index" aria-label="Capability map chapters">
@@ -54,8 +54,8 @@ export default function ProductShowcase() {
 
         <div className="capability-map-chapters">
           {capabilities.map((item, index) => <article className="capability-chapter" id={`map-${item.id}`} key={item.id}>
-            <div className={`capability-art capability-art-${index + 1}`} aria-hidden="true"><span /><span /><span /><b>{item.number}</b></div>
-            <div className="chapter-copy"><Eyebrow number={item.number}>{item.category}</Eyebrow><h3>{item.title}</h3><p>{item.text}</p><span>{item.tags}</span></div>
+            <figure className="capability-art"><img src={item.mapImage} alt="" loading={index === 0 ? "eager" : "lazy"} /><figcaption><span>{item.number} / 06</span><strong>{item.category}</strong></figcaption></figure>
+            <div className="chapter-copy"><Eyebrow number={item.number}>{item.category}</Eyebrow><h3>{item.title}</h3><p>{item.text}</p><span>{item.tags}</span><Link className="text-arrow-link" href={`/expertise/${item.id}`}>See the capability details <span aria-hidden="true">↗</span></Link></div>
           </article>)}
         </div>
       </div>
