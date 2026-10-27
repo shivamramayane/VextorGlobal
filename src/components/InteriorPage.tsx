@@ -2,32 +2,35 @@
 
 import { useState, type FormEvent } from "react"
 import Link from "next/link"
+import Navbar from "./Navbar"
+import Footer from "./Footer"
+import { approachSteps, capabilities, caseStudies, industries } from "../content"
+import { ArrowIcon, ButtonLink, Card, Eyebrow, Heading, Reveal, StatCounter } from "./ui"
 
 type PageType = "expertise" | "approach" | "work" | "company" | "contact" | "not-found"
 
 const pages = {
-  expertise: ["Capabilities", "Technology expertise, connected end to end.", "Strategy, experience, engineering, and operations working as one system—not a collection of disconnected vendors.", "https://images.unsplash.com/photo-1462556791646-c201b8241a94?auto=format&fit=crop&w=1600&q=85"],
-  approach: ["The Vextor method", "Clarity before code. Outcomes before output.", "Our senior teams align business intent, user needs, and technical reality before we build—then deliver in measurable increments.", "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=1600&q=85"],
-  work: ["Selected impact", "Transformation you can measure.", "A selection of engagements where technology became a genuine commercial advantage.", "https://images.unsplash.com/photo-1725913496276-47d7147da99f?auto=format&fit=crop&w=1600&q=85"],
-  company: ["About VextorGlobal", "Global perspective. One accountable team.", "We are strategists, designers, engineers, and operators united by a belief that important technology should be built with care.", "https://images.unsplash.com/photo-1758691737124-05c5bffe46f0?auto=format&fit=crop&w=1600&q=85"],
-  contact: ["Start a conversation", "Bring us your hardest technology challenge.", "Tell us what needs to change. A senior VextorGlobal specialist will respond within one business day.", "https://images.unsplash.com/photo-1558095625-f882e3436125?auto=format&fit=crop&w=1600&q=85"],
-  "not-found": ["404", "This page has moved beyond the map.", "Return home to continue exploring VextorGlobal.", "https://images.unsplash.com/photo-1527643448713-eea496619e3c?auto=format&fit=crop&w=1600&q=85"],
+  expertise: { eyebrow: "CAPABILITIES", intro: "Strategy, experience, engineering, and operations working as one system—not a collection of disconnected vendors.", image: "https://images.unsplash.com/photo-1462556791646-c201b8241a94?auto=format&fit=crop&w=1600&q=85", imageLabel: "Digital systems and product engineering" },
+  approach: { eyebrow: "THE VEXTOR METHOD", intro: "Our senior teams align business intent, user needs, and technical reality before we build—then deliver in measurable increments.", image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=1600&q=85", imageLabel: "A team collaborating on a technology roadmap" },
+  work: { eyebrow: "SELECTED IMPACT", intro: "A selection of engagements where technology became a genuine commercial advantage.", image: "https://images.unsplash.com/photo-1725913496276-47d7147da99f?auto=format&fit=crop&w=1600&q=85", imageLabel: "A global logistics and technology network" },
+  company: { eyebrow: "ABOUT VEXTORGLOBAL", intro: "We are strategists, designers, engineers, and operators united by a belief that important technology should be built with care.", image: "https://images.unsplash.com/photo-1758691737124-05c5bffe46f0?auto=format&fit=crop&w=1600&q=85", imageLabel: "A global team bringing technology and business together" },
+  contact: { eyebrow: "START A CONVERSATION", intro: "Tell us what needs to change. A senior VextorGlobal specialist will respond within one business day.", image: "https://images.unsplash.com/photo-1558095625-f882e3436125?auto=format&fit=crop&w=1600&q=85", imageLabel: "A calm, modern workspace for a project conversation" },
+  "not-found": { eyebrow: "404 / NOT FOUND", intro: "Return home to continue exploring VextorGlobal.", image: "https://images.unsplash.com/photo-1527643448713-eea496619e3c?auto=format&fit=crop&w=1600&q=85", imageLabel: "An abstract landscape" },
+} as const
+
+function PageTitle({ type }: { type: PageType }) {
+  if (type === "expertise") return <>Technology expertise, connected <em>end to end.</em></>
+  if (type === "approach") return <>Clarity before code. <em>Outcomes before output.</em></>
+  if (type === "work") return <>Transformation you can <em>measure.</em></>
+  if (type === "company") return <>Global perspective. <em>One accountable team.</em></>
+  if (type === "contact") return <>Bring us your hardest <em>technology challenge.</em></>
+  return <>This page has moved <em>beyond the map.</em></>
 }
-
-const offerings = [
-  ["Digital products", "Web platforms, mobile applications, commerce, and connected customer experiences."],
-  ["Custom software", "Purpose-built enterprise systems, integrations, automation, and modernization."],
-  ["AI solutions", "Responsible AI strategy, intelligent workflows, copilots, and production-grade models."],
-  ["Cloud & security", "Cloud architecture, DevOps, observability, cybersecurity, and managed resilience."],
-  ["Experience design", "Product strategy, research, service design, UI systems, and rapid prototyping."],
-  ["IT consulting", "Technology strategy, architecture advisory, delivery leadership, and transformation."],
-]
-
-const Mark = () => <span className="brand-mark"><i /><i /><i /></span>
 
 function ContactForm() {
   const [status, setStatus] = useState("")
   const [sending, setSending] = useState(false)
+
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setSending(true)
@@ -42,46 +45,97 @@ function ContactForm() {
       setStatus("Thanks — your project brief has been sent to our team. We’ll be in touch within one business day.")
     } catch (error) {
       setStatus(error instanceof Error ? error.message : "We couldn’t send your message. Please try again.")
-    } finally { setSending(false) }
+    } finally {
+      setSending(false)
+    }
   }
-  return <form onSubmit={submit}>
-    <label>Name<input name="name" required minLength={2} placeholder="Your name" /></label>
-    <label>Work email<input name="email" type="email" required placeholder="name@company.com" /></label>
-    <label>Company<input name="company" placeholder="Company name" /></label>
-    <label>Area<select name="area" defaultValue=""><option value="" disabled>Select an area</option><option>Digital products</option><option>AI solutions</option><option>Cloud & security</option><option>Experience design</option></select></label>
-    <label className="full">Project context<textarea name="message" required minLength={10} placeholder="A short description of the opportunity or challenge" rows={4}/></label>
-    <button type="submit" disabled={sending}>{sending ? "Sending…" : "Send project brief"} <span>→</span></button>
-    {status && <p className="form-status full" role="status">{status}</p>}
+
+  return <form onSubmit={submit} className="contact-form">
+    <label>Name<input name="name" autoComplete="name" required minLength={2} placeholder="Your name" /></label>
+    <label>Work email<input name="email" type="email" autoComplete="email" required placeholder="name@company.com" /></label>
+    <label>Company<input name="company" autoComplete="organization" placeholder="Company name" /></label>
+    <label>Area<select name="area" defaultValue=""><option value="" disabled>Select an area</option><option>Digital products</option><option>AI solutions</option><option>Cloud & security</option><option>Experience design</option><option>Custom software</option><option>IT consulting</option></select></label>
+    <label className="field-full">Project context<textarea name="message" required minLength={10} placeholder="A short description of the opportunity or challenge" rows={5} /></label>
+    <button className="form-submit" type="submit" disabled={sending}>{sending ? "Sending…" : "Send project brief"}<span aria-hidden="true">↗</span></button>
+    {status && <p className="form-status field-full" role="status">{status}</p>}
   </form>
 }
 
-export default function InteriorPage({ type }: { type: PageType }) {
-  const [menu, setMenu] = useState(false)
-  const [eyebrow, title, intro, image] = pages[type]
-  const isContact = type === "contact"
-  return <main className="interior">
-    <header className="nav">
-      <Link className="brand" href="/"><Mark /><span>Vextor<span>Global</span></span></Link>
-      <nav className={menu ? "nav-links open" : "nav-links"}>
-        <Link href="/expertise" onClick={() => setMenu(false)}>Expertise</Link><Link href="/approach" onClick={() => setMenu(false)}>Approach</Link><Link href="/work" onClick={() => setMenu(false)}>Impact</Link><Link href="/company" onClick={() => setMenu(false)}>Company</Link>
-        <Link className="nav-cta" href="/contact" onClick={() => setMenu(false)}>Start a project <span>→</span></Link>
-      </nav>
-      <button className="menu" onClick={() => setMenu(!menu)} aria-label="Toggle menu"><span>{menu ? "×" : "☰"}</span></button>
-    </header>
-    <section className="page-hero">
-      <div className="page-hero-copy"><p className="kicker">{eyebrow}</p><h1>{title}</h1><p>{intro}</p></div>
-      <figure><img src={image} alt="" /><figcaption>VextorGlobal / {eyebrow}</figcaption></figure>
+function CapabilityPage() {
+  return <section className="interior-content-section section-shell">
+    <div className="interior-section-intro"><Eyebrow number="01">WHAT WE DO</Eyebrow><Heading>Specialists for the <em>whole journey.</em></Heading><p>Choose a focused capability or bring disciplines together around a larger transformation.</p></div>
+    <div className="interior-capability-grid">
+      {capabilities.map((item, index) => <Reveal key={item.id} delay={index * .05}><Card className="interior-capability-card" ><span className="interior-card-number">{item.number}</span><Eyebrow>{item.category}</Eyebrow><h2 id={item.id}>{item.title}</h2><p>{item.detail}</p><span className="capability-tags">{item.tags}</span><Link href="/contact">Discuss this capability <span aria-hidden="true">↗</span></Link></Card></Reveal>)}
+    </div>
+  </section>
+}
+
+function ApproachPage() {
+  return <>
+    <section className="interior-content-section section-shell">
+      <div className="interior-section-intro"><Eyebrow number="01">OUR DELIVERY APPROACH</Eyebrow><Heading>Four stages. <em>One shared direction.</em></Heading><p>Clear decisions, focused increments, and open collaboration keep the work connected to its intended outcome.</p></div>
+      <div className="approach-timeline">
+        {approachSteps.map((step, index) => <Reveal key={step.n} delay={index * .08}><article className="approach-stage"><span>{step.n}</span><div><h2>{step.title}</h2><p>{step.description}</p></div><i aria-hidden="true">↗</i></article></Reveal>)}
+      </div>
     </section>
-    {type === "expertise" && <section className="offering-grid">{offerings.map(([name, text], i) => <article key={name}><span>0{i + 1}</span><h2>{name}</h2><p>{text}</p><Link href="/contact">Discuss this capability →</Link></article>)}</section>}
-    {type === "approach" && <section className="process">{["Discover", "Define", "Deliver", "Evolve"].map((item, i) => <article key={item}><b>0{i + 1}</b><h2>{item}</h2><p>{["Align leadership, users, data, and technical constraints around the real opportunity.", "Shape the product vision, architecture, roadmap, and success measures.", "Build in focused increments with senior multidisciplinary teams and total transparency.", "Measure performance, strengthen capability, and adapt the platform as your business grows."][i]}</p></article>)}</section>}
-    {type === "work" && <section className="case-list">{[["Global logistics", "A unified operations platform across 14 markets.", "3.2× faster"], ["Financial services", "Secure cloud migration without business interruption.", "41% lower cost"], ["Retail technology", "A new commerce ecosystem built for international scale.", "+68% conversion"]].map((c, i) => <article key={c[0]}><span>CASE 0{i + 1}</span><div><small>{c[0]}</small><h2>{c[1]}</h2></div><strong>{c[2]}</strong></article>)}</section>}
-    {type === "company" && <section className="company-story"><div><p className="kicker">What defines us</p><h2>Independent thinking.<br/>International reach.</h2></div><div><p>VextorGlobal brings together senior specialists across disciplines and borders. Our operating model is intentionally lean: the people in the room are the people doing the work.</p><div className="company-numbers"><span><b>42+</b>markets served</span><span><b>96%</b>client retention</span><span><b>18</b>delivery hubs</span></div></div></section>}
-    {isContact && <section className="contact-panel">
-      <ContactForm />
-      <aside><p>Prefer email?</p><a href="mailto:hello@vextorglobal.com">hello@vextorglobal.com</a><hr/><p>Global delivery</p><span>London · New York · Singapore<br/>Working worldwide</span></aside>
-    </section>}
-    {type === "not-found" && <div className="return-home"><Link href="/">Return to homepage →</Link></div>}
-    {!isContact && type !== "not-found" && <section className="three-d-cta"><div className="kinetic-scene" aria-hidden="true"><span className="ring r1"/><span className="ring r2"/><span className="ring r3"/><i/><b>VG</b></div><div><p className="kicker">Build what’s next</p><h2>Your ambition,<br/>engineered.</h2><Link href="/contact">Start a conversation →</Link></div></section>}
-    <footer><Link className="brand" href="/"><Mark /><span>Vextor<span>Global</span></span></Link><p>Technology without borders.<br/>Impact without limits.</p><div className="footer-links"><Link href="/expertise">Expertise</Link><Link href="/company">Company</Link><Link href="/contact">Contact</Link></div><small>© 2026 VextorGlobal. All rights reserved.</small></footer>
+    <section className="approach-beliefs section-shell">
+      <div><Eyebrow>WHAT GUIDES THE WORK</Eyebrow><Heading>Clarity at every <em>decision point.</em></Heading></div>
+      <p>We embed with your team, clarify the hard problems, and deliver with a level of rigor that earns long-term trust.</p>
+      <ButtonLink href="/contact" variant="outline">Talk through your roadmap</ButtonLink>
+    </section>
+  </>
+}
+
+function WorkPage() {
+  return <section className="interior-content-section work-content-section section-shell">
+    <div className="interior-section-intro"><Eyebrow number="01">SELECTED ENGAGEMENTS</Eyebrow><Heading>Technology with a <em>business case.</em></Heading><p>Examples of the outcomes VextorGlobal teams work toward with clients.</p></div>
+    <div className="work-case-list">
+      {caseStudies.map((study, index) => <Reveal key={study.id} delay={index * .08}><article id={study.id} className="work-case-card">
+        <span className="work-case-number">CASE {study.number}</span><div className="work-case-copy"><Eyebrow>{study.industry}</Eyebrow><h2>{study.title}</h2><Link href="/contact">Discuss similar work <span aria-hidden="true">↗</span></Link></div><div className="work-case-stat"><StatCounter value={study.value} prefix={"prefix" in study ? study.prefix : ""} suffix={study.suffix} decimals={study.decimals} label={study.outcome} /></div>
+      </article></Reveal>)}
+    </div>
+    <div className="case-endnote"><span>VEXTORGLOBAL / IMPACT</span><p>Results are shaped by each client’s goals, context, and team.</p></div>
+  </section>
+}
+
+function CompanyPage() {
+  return <>
+    <section className="company-intro section-shell">
+      <div><Eyebrow number="01">WHAT DEFINES US</Eyebrow><Heading>Independent thinking. <em>International reach.</em></Heading></div>
+      <div><p>VextorGlobal brings together senior specialists across disciplines and borders. Our operating model is intentionally lean: the people in the room are the people doing the work.</p><div className="company-stat-row"><StatCounter value={42} suffix="+" label="Markets served" /><StatCounter value={96} suffix="%" label="Client retention" /><StatCounter value={18} label="Delivery hubs" /></div></div>
+    </section>
+    <section className="company-network section-shell" id="industries">
+      <div className="interior-section-intro"><Eyebrow number="02">WHERE WE WORK</Eyebrow><Heading>Experience across <em>complex sectors.</em></Heading><p>Our teams bring context to the technical choices that shape critical products and operations.</p></div>
+      <div className="company-industry-list">{industries.map((industry, index) => <Reveal key={industry} delay={index * .05}><div><span>0{index + 1}</span><strong>{industry}</strong><i aria-hidden="true">↗</i></div></Reveal>)}</div>
+    </section>
+  </>
+}
+
+function ContactPage() {
+  return <section className="contact-content section-shell">
+    <div className="contact-form-column"><Eyebrow number="01">TELL US WHAT YOU’RE BUILDING</Eyebrow><h2>Every good engagement starts with <em>a clear conversation.</em></h2><p>Share a little about your project and a senior specialist will respond within one business day.</p><ContactForm /></div>
+    <aside className="contact-aside"><span className="contact-aside-label">PREFER EMAIL?</span><a href="mailto:hello@vextorglobal.com">hello@vextorglobal.com <span aria-hidden="true">↗</span></a><hr /><span className="contact-aside-label">GLOBAL DELIVERY</span><p>London · New York · Singapore<br />Working worldwide</p><div className="contact-aside-note"><span className="availability-dot" />Typically responds within one business day</div></aside>
+  </section>
+}
+
+export default function InteriorPage({ type }: { type: PageType }) {
+  const page = pages[type]
+  return <main className={`site-page interior-page interior-${type}`}>
+    <Navbar />
+    <section className="page-hero-dark" aria-labelledby="interior-title">
+      <div className="page-hero-inner"><div className="page-hero-copy"><Eyebrow>{page.eyebrow}</Eyebrow><Heading id="interior-title" as="h1" className="interior-title"><PageTitle type={type} /></Heading><p>{page.intro}</p>{type === "contact" && <ButtonLink href="#contact-form" variant="solid">Start a conversation</ButtonLink>}{type === "not-found" && <ButtonLink href="/" variant="solid">Return to homepage</ButtonLink>}</div>
+        <figure className="page-hero-image"><img src={page.image} alt="" fetchPriority="high" /><figcaption>VEXTORGLOBAL / {page.imageLabel}</figcaption></figure>
+      </div>
+    </section>
+
+    {type === "expertise" && <CapabilityPage />}
+    {type === "approach" && <ApproachPage />}
+    {type === "work" && <WorkPage />}
+    {type === "company" && <CompanyPage />}
+    {type === "contact" && <div id="contact-form"><ContactPage /></div>}
+    {type === "not-found" && <div className="not-found-return section-shell"><Eyebrow>THE REST OF THE SITE IS RIGHT THIS WAY</Eyebrow><Link href="/">Return to the VextorGlobal homepage <span aria-hidden="true">↗</span></Link></div>}
+
+    {!["contact", "not-found"].includes(type) && <section className="interior-final-cta"><div><Eyebrow>BUILD WHAT’S NEXT</Eyebrow><Heading>Your ambition, <em>engineered.</em></Heading><p>Tell us where you want to go. We’ll bring the expertise to get you there.</p><ButtonLink href="/contact" variant="solid">Start a conversation</ButtonLink></div><div className="interior-cta-mark" aria-hidden="true"><span /><span /><span /><b>VG</b></div></section>}
+    <Footer />
   </main>
 }
