@@ -33,7 +33,11 @@ export const approachSteps = [
   { n: "04", title: "Evolve", description: "Measure performance, strengthen capability, and adapt the platform as your business grows." },
 ] as const
 
-export const stackTools = ["Shopify", "Stripe", "AWS", "Vercel", "Firebase"] as const
+export const stackTools = [
+  "React", "Next.js", "TypeScript", "Node.js", "Python", "PostgreSQL",
+  "Shopify", "Stripe", "AWS", "Vercel", "Firebase", "Supabase",
+  "Docker", "Kubernetes", "Terraform", "GitHub Actions", "Figma", "OpenAI",
+] as const
 
 export const engagementModels = [
   { id: "pilot", number: "01", title: "Pilot", summary: "A focused, fixed-scope engagement to test an opportunity or resolve a defined technical question.", details: ["Defined question and deliverables", "Short, agreed timeframe", "Decision-ready findings or working proof of concept"] },

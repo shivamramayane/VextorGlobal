@@ -4,8 +4,8 @@ import Link from "next/link"
 import Navbar from "./Navbar"
 import Footer from "./Footer"
 import ProductShowcase from "./ProductShowcase"
-import { ArrowIcon, ButtonLink, Card, Eyebrow, Heading, Marquee, Reveal, StatCounter } from "./ui"
-import { approachSteps, capabilities, caseStudies, engagementModels, faqs, freeTools, projectConcepts, stackTools } from "../content"
+import { ArrowIcon, ButtonLink, Card, Eyebrow, Heading, Marquee, Reveal } from "./ui"
+import { approachSteps, caseStudies, faqs, freeTools, projectConcepts, stackTools } from "../content"
 
 const principles = [
   ["Business-first strategy", "Tie technology decisions to clear commercial value."],
@@ -67,7 +67,7 @@ export default function Home() {
           <p className="hero-lead">We design, build, and modernize the digital systems ambitious organizations depend on—across every platform, market, and stage of growth.</p>
           <div className="hero-actions">
             <ButtonLink href="/contact" variant="solid">Discuss your project</ButtonLink>
-            <ButtonLink href="#starting-point" variant="outline">Explore our capabilities</ButtonLink>
+            <ButtonLink href="#capability-map" variant="outline">Explore our capabilities</ButtonLink>
           </div>
           <div className="hero-trust-row">{trustSignals.map((item, index) => <span key={item}>{index > 0 && <i aria-hidden="true" />} {item}</span>)}</div>
         </div>
@@ -77,53 +77,15 @@ export default function Home() {
         <div className="hero-proof-items" aria-label="VextorGlobal at a glance">
           <span><b>6</b> capabilities</span><i /><span><b>4</b> delivery stages</span><i /><span><b>3</b> engagement models</span>
         </div>
-        <a className="scroll-cue" href="#starting-point"><span className="scroll-cue-line" />SCROLL TO EXPLORE</a>
-      </div>
-    </section>
-
-    <Marquee label="VextorGlobal capabilities" items={["Digital products", "Intelligent systems", "Experience design", "Cloud & security", "Custom software", "IT consulting"]} />
-
-    <section className="section-shell starting-point-section" id="starting-point">
-      <div className="section-heading starting-heading">
-        <div><Eyebrow number="01">FIND YOUR STARTING POINT</Eyebrow><Heading>Start with the <em>challenge.</em></Heading></div>
-        <p>Choose the outcome that matters most right now. Start with the capability built to move it forward, then bring in more of the team as the work grows.</p>
-      </div>
-      <div className="starting-grid">
-        {capabilities.map((item, index) => <Link className="starting-card" href={`#map-${item.id}`} key={item.id}>
-          <span>{item.category}</span><strong>{item.title}</strong><i aria-hidden="true">↗</i>
-        </Link>)}
-      </div>
-      <Link className="text-arrow-link explore-all" href="/expertise">Or explore all capabilities <span aria-hidden="true">↗</span></Link>
-      <div className="stat-strip" aria-label="VextorGlobal experience">
-        <StatCounter value={6} label="Capabilities" />
-        <StatCounter value={4} label="Delivery stages" />
-        <StatCounter value={engagementModels.length} label="Engagement models" />
+        <a className="scroll-cue" href="#capability-map"><span className="scroll-cue-line" />SCROLL TO EXPLORE</a>
       </div>
     </section>
 
     <ProductShowcase />
 
-    <section className="section-shell suite-section" id="suite">
-      <div className="section-heading">
-        <div><Eyebrow number="02">THE CAPABILITY SUITE</Eyebrow><Heading>One team. <em>Many ways forward.</em></Heading></div>
-        <p>Bring the right specialists together around your goals. Each capability has a clear role and can stand on its own or work as part of a connected program.</p>
-      </div>
-      <div className="suite-grid">
-        {capabilities.map((item, index) => <Reveal className="suite-card-wrap" delay={index * .045} key={item.id}>
-          <Card className="suite-card">
-            <div className="suite-card-top"><span>{item.number}</span><span className="suite-arrow" aria-hidden="true">↗</span></div>
-            <figure className="suite-card-image"><img src={item.image} alt={item.imageAlt} loading="lazy" /></figure>
-            <Eyebrow>{item.category}</Eyebrow>
-            <h3>{item.title}</h3><p>{item.text}</p>
-            <div className="suite-card-bottom"><span>{item.tags}</span><Link href={`/expertise/${item.id}`}>Explore <span aria-hidden="true">↗</span></Link></div>
-          </Card>
-        </Reveal>)}
-      </div>
-    </section>
-
     <section className="how-section section-shell" id="approach">
       <div className="section-heading">
-        <div><Eyebrow number="03">HOW WE WORK</Eyebrow><Heading>Clarity before code. <em>Outcomes before output.</em></Heading></div>
+        <div><Eyebrow number="02">HOW WE WORK</Eyebrow><Heading>Clarity before code. <em>Outcomes before output.</em></Heading></div>
         <p>Our senior teams align business intent, user needs, and technical reality before we build—then deliver in measurable increments.</p>
       </div>
       <div className="step-grid">
@@ -135,7 +97,7 @@ export default function Home() {
     </section>
 
     <section className="proof-section section-shell" id="impact">
-      <div className="proof-intro"><Eyebrow number="04">MEASURE WHAT MATTERS</Eyebrow><Heading>Outcomes are the <em>measure.</em></Heading><p>We agree the right signal for each project, establish a baseline, and review progress against it together.</p></div>
+      <div className="proof-intro"><Eyebrow number="03">MEASURE WHAT MATTERS</Eyebrow><Heading>Outcomes are the <em>measure.</em></Heading><p>We agree the right signal for each project, establish a baseline, and review progress against it together.</p></div>
       <div className="proof-content">
         <div className="proof-stat-grid outcome-measure-grid">
           {outcomeMeasures.map(([number, title, detail]) => <article className="outcome-measure" key={number}><span>{number} / POSSIBLE SIGNAL</span><h3>{title}</h3><p>{detail}</p></article>)}
@@ -145,7 +107,7 @@ export default function Home() {
     </section>
 
     <section className="network-section section-shell" id="customers">
-      <div className="network-heading"><div><Eyebrow number="05">FICTIONAL PROJECT CONCEPTS</Eyebrow><Heading>Ideas with <em>room to grow.</em></Heading></div><Link className="text-arrow-link" href="/customers">Explore concepts <span aria-hidden="true">↗</span></Link></div>
+      <div className="network-heading"><div><Eyebrow number="04">FICTIONAL PROJECT CONCEPTS</Eyebrow><Heading>Ideas with <em>room to grow.</em></Heading></div><Link className="text-arrow-link" href="/customers">Explore concepts <span aria-hidden="true">↗</span></Link></div>
       <p className="network-intro">A separate concept portfolio: fictional company and product names used to show the kinds of challenges our team can help shape. These are not client references or shipped work.</p>
       <div className="customer-logo-grid sample-client-grid" aria-label="Fictional project concepts">
         {projectConcepts.slice(0, 3).map((project, index) => <Reveal key={project.name} delay={index * .04}><article className="sample-client-card"><span>CONCEPT PROJECT / 0{index + 1}</span><strong>{project.name}</strong><small>{project.industry}</small><b>{project.product}</b><small className="concept-project-lead">{project.lead}</small><p>{project.brief}</p></article></Reveal>)}
@@ -153,32 +115,31 @@ export default function Home() {
     </section>
 
     <section className="stack-section section-shell">
-      <div className="section-heading"><div><Eyebrow number="06">TECHNOLOGY ECOSYSTEM</Eyebrow><Heading>Built to fit <em>your digital estate.</em></Heading></div><p>Examples from the stack your team identified. Project-specific integrations and experience are confirmed during discovery.</p></div>
-      <div className="stack-grid">{stackTools.map((item, index) => <Reveal key={item} delay={index * .035}><div className="stack-tile"><span className="stack-letter" aria-hidden="true">{item.charAt(0)}</span><strong>{item}</strong><i aria-hidden="true">↗</i></div></Reveal>)}</div>
+      <div className="section-heading"><div><Eyebrow number="05">TECHNOLOGY ECOSYSTEM</Eyebrow><Heading>Built to fit <em>your digital estate.</em></Heading></div><p>Examples from the stack your team identified. Project-specific integrations and experience are confirmed during discovery.</p></div>
       <Marquee label="Technology ecosystem examples" items={[...stackTools, ...stackTools]} slow />
     </section>
 
     <section className="engineering-section section-shell">
-      <div className="engineering-heading"><Eyebrow number="07">ENGINEERING FOR THE LONG TERM</Eyebrow><Heading>Enterprise-grade, <em>by design.</em></Heading><p>Resilience is built into the decisions behind the product—not added after launch.</p></div>
+      <div className="engineering-heading"><Eyebrow number="06">ENGINEERING FOR THE LONG TERM</Eyebrow><Heading>Enterprise-grade, <em>by design.</em></Heading><p>Resilience is built into the decisions behind the product—not added after launch.</p></div>
       <div className="engineering-grid">
         {engineeringSignals.map(([number, title, text], index) => <Reveal key={number}><Card className="engineering-card"><span>{number}</span><h3>{title}</h3><p>{text}</p><i aria-hidden="true">↗</i></Card></Reveal>)}
       </div>
     </section>
 
     <section className="principles-section section-shell">
-      <div className="principles-heading"><Eyebrow number="08">A BETTER WAY TO BUILD</Eyebrow><Heading>Value from the <em>first conversation.</em></Heading><p>Good partnerships make the work clearer at every step.</p></div>
+      <div className="principles-heading"><Eyebrow number="07">A BETTER WAY TO BUILD</Eyebrow><Heading>Value from the <em>first conversation.</em></Heading><p>Good partnerships make the work clearer at every step.</p></div>
       <div className="principle-list">
         {principles.map(([title, text], index) => <Reveal key={title}><article className="principle-row"><span>0{index + 1}</span><h3>{title}</h3><p>{text}</p><ArrowIcon /></article></Reveal>)}
       </div>
     </section>
 
     <section className="value-tools-section section-shell" id="resources">
-      <div className="section-heading"><div><Eyebrow number="09">PRACTICAL STARTING POINTS</Eyebrow><Heading>Value before <em>the sales call.</em></Heading></div><p>Use these prompts to organize your goals and questions before a first conversation.</p></div>
+      <div className="section-heading"><div><Eyebrow number="08">PRACTICAL STARTING POINTS</Eyebrow><Heading>Value before <em>the sales call.</em></Heading></div><p>Use these prompts to organize your goals and questions before a first conversation.</p></div>
       <div className="value-tools-grid">{freeTools.map((tool, index) => <Reveal key={tool.number}><Link className="value-tool-card" href={tool.href}><span>{tool.number} / WORKSHEET</span><strong>{tool.title}</strong><p>{tool.detail}</p><i>{tool.action} <b aria-hidden="true">↗</b></i></Link></Reveal>)}</div>
     </section>
 
     <section className="case-section section-shell" id="selected-work">
-      <div className="section-heading"><div><Eyebrow number="10">CONCEPT PROJECTS</Eyebrow><Heading>Designed for <em>real-world needs.</em></Heading></div><p>Fictional project concepts explore practical product and platform challenges. They are not client work or measured outcomes.</p></div>
+      <div className="section-heading"><div><Eyebrow number="09">CONCEPT PROJECTS</Eyebrow><Heading>Designed for <em>real-world needs.</em></Heading></div><p>Fictional project concepts explore practical product and platform challenges. They are not client work or measured outcomes.</p></div>
       <div className="case-grid">
         {caseStudies.map((study, index) => <Reveal className="case-card-wrap" delay={index * .08} key={study.id}><Link className="case-card" href={`/work#${study.id}`}>
           <span className="case-card-number">CONCEPT {study.number}</span><Eyebrow>{study.industry}</Eyebrow><h3>{study.client} · {study.product}</h3><p>{study.title}</p><div><span>{study.outcome}</span><i aria-hidden="true">↗</i></div>
@@ -188,7 +149,7 @@ export default function Home() {
     </section>
 
     <section className="faq-section section-shell" id="faq">
-      <div className="section-heading"><div><Eyebrow number="11">COMMON QUESTIONS</Eyebrow><Heading>Good to know <em>before we start.</em></Heading></div><p>Some of the practical questions teams bring to the first conversation.</p></div>
+      <div className="section-heading"><div><Eyebrow number="10">COMMON QUESTIONS</Eyebrow><Heading>Good to know <em>before we start.</em></Heading></div><p>Some of the practical questions teams bring to the first conversation.</p></div>
       <div className="faq-list">{faqs.map((faq, index) => <details className="faq-item" key={faq.question}><summary><span>{String(index + 1).padStart(2, "0")}</span>{faq.question}<i aria-hidden="true">+</i></summary><p>{faq.answer}</p></details>)}</div>
     </section>
 

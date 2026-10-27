@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import Navbar from "./Navbar"
 import Footer from "./Footer"
 import { capabilities } from "../content"
@@ -13,7 +14,7 @@ export default function CapabilityDetailPage({ slug }: { slug: string }) {
 
   return <main className="site-page detail-page">
     <Navbar />
-    <section className="page-hero-dark capability-detail-hero"><div className="page-hero-inner detail-hero-inner"><div className="page-hero-copy"><Eyebrow number={capability.number}>{capability.category}</Eyebrow><Heading id="capability-title" as="h1" accent={capability.title}>Technology for <span className="detail-title-break">work that matters.</span></Heading><p>{capability.detail}</p><ButtonLink href="/contact" variant="solid">Discuss this capability</ButtonLink></div><div className="detail-hero-visual" aria-hidden="true"><span /><span /><span /><b>{capability.number}</b></div></div></section>
+    <section className="page-hero-dark capability-detail-hero"><div className="page-hero-inner detail-hero-inner"><div className="page-hero-copy"><Eyebrow number={capability.number}>{capability.category}</Eyebrow><Heading id="capability-title" as="h1" accent={capability.title}>Technology for <span className="detail-title-break">work that matters.</span></Heading><p>{capability.detail}</p><ButtonLink href="/contact" variant="solid">Discuss this capability</ButtonLink></div><figure className="detail-hero-visual"><Image src={capability.mapImage} alt={capability.mapImageAlt} width={1200} height={900} sizes="(max-width: 980px) 100vw, 45vw" priority /><figcaption><span>{capability.number} / 06</span><strong>{capability.category}</strong></figcaption></figure></div></section>
     <div className="section-shell detail-page-shell">
       <InPageNav links={[{ label: "What we deliver", href: "#deliver" }, { label: "Process", href: "#process" }, { label: "Outcomes", href: "#outcomes" }, { label: "Technology", href: "#technology" }, { label: "Related expertise", href: "#related" }]} />
       <section className="detail-section" id="deliver"><div className="interior-section-intro"><Eyebrow number="01">WHAT WE DELIVER</Eyebrow><Heading>From first decision <em>to real capability.</em></Heading><p>{capability.detail}</p></div><div className="detail-deliver-grid">{capability.deliver.map((item, index) => <Reveal key={item} delay={index * .04}><article><span>{String(index + 1).padStart(2, "0")}</span><h3>{item}</h3><i aria-hidden="true">↗</i></article></Reveal>)}</div></section>
