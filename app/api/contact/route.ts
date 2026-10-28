@@ -52,6 +52,13 @@ export async function POST(request: Request) {
   // Resend's shared test sender works before the site has a verified domain.
   // Set RESEND_FROM_EMAIL to a verified sender when the company domain is ready.
   const from = process.env.RESEND_FROM_EMAIL || "VextorGlobal <onboarding@resend.dev>"
+  // Set CONTACT_INBOX to the Resend account email while using its test sender.
+  // After verifying a sending domain, it can be changed to the business inbox.
+  const recipient = process.env.CONTACT_INBOX
+  if (!recipient) {
+    console.error("[contact] CONTACT_INBOX is not configured for this deployment")
+    return NextResponse.json({ error: "Email destination is not configured. Set CONTACT_INBOX in the deployment environment." }, { status: 503 })
+  }
   const suppliedIdempotencyKey = request.headers.get("Idempotency-Key") || ""
   const idempotencyKey = /^[a-zA-Z0-9_-]{1,200}$/.test(suppliedIdempotencyKey) ? suppliedIdempotencyKey : randomUUID()
 
@@ -61,7 +68,7 @@ export async function POST(request: Request) {
       headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json", "Idempotency-Key": idempotencyKey },
       body: JSON.stringify({
         from,
-        to: ["maruhshivam48@gmail.com"],
+        to: [recipient],
         reply_to: email,
         subject: `New website enquiry from ${safeSubjectName}`,
         text: `Name: ${name}\nEmail: ${email}\nCompany: ${company || "Not provided"}\nArea: ${area || "Not provided"}\n\nProject context:\n${message}`,
