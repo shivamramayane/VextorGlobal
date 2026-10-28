@@ -24,7 +24,10 @@ export function Eyebrow({ children, number }: { children: ReactNode; number?: st
 type ButtonLinkProps = ComponentProps<typeof Link> & { variant?: "solid" | "outline" | "text" }
 
 export function ButtonLink({ children, className = "", variant = "solid", ...props }: ButtonLinkProps) {
-  return <Link className={`button-link button-${variant} ${className}`} {...props}>{children}<span className="button-arrow" aria-hidden="true">↗</span></Link>
+  const href = typeof props.href === "string" ? props.href : ""
+  const external = /^(https?:|mailto:|tel:)/i.test(href)
+  const arrow = external ? "↗" : variant === "solid" ? "" : "→"
+  return <Link className={`button-link button-${variant} ${className}`} {...props}>{children}{arrow && <span className="button-arrow" aria-hidden="true">{arrow}</span>}</Link>
 }
 
 export function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
@@ -33,22 +36,22 @@ export function Card({ children, className = "" }: { children: ReactNode; classN
 
 export function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const reduceMotion = useReducedMotion()
-  return <motion.div className={className} initial={reduceMotion ? false : { opacity: 0, y: 22, filter: "blur(7px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true, amount: 0.16 }} transition={{ duration: reduceMotion ? 0 : 0.65, delay, ease: [0.22, 1, 0.36, 1] }}>{children}</motion.div>
+  // Keep server-rendered content visible; motion may enhance it after hydration.
+  return <motion.div className={className} initial={false} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true, amount: 0.16 }} transition={{ duration: reduceMotion ? 0 : 0.65, delay, ease: [0.22, 1, 0.36, 1] }}>{children}</motion.div>
 }
 
 export function StatCounter({ value, prefix = "", suffix = "", decimals = 0, label }: { value: number; prefix?: string; suffix?: string; decimals?: number; label: string }) {
   const ref = useRef<HTMLSpanElement>(null)
   const inView = useInView(ref, { once: true, amount: 0.7 })
   const reduceMotion = useReducedMotion()
-  const count = useMotionValue(0)
+  // The server-rendered value remains meaningful if JS or motion never runs.
+  const count = useMotionValue(value)
   const rounded = useTransform(count, (latest) => (decimals ? latest.toFixed(decimals) : Math.round(latest).toLocaleString("en-US")))
 
   useEffect(() => {
     if (!inView) return
-    if (reduceMotion) {
-      count.set(value)
-      return
-    }
+    if (reduceMotion) return
+    count.set(0)
     const controls = animate(count, value, { duration: 1.25, ease: "easeOut" })
     return () => controls.stop()
   }, [count, inView, reduceMotion, value])

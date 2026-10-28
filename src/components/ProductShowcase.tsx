@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useMemo, useRef, useState } from "react"
 import { AnimatePresence, motion, useMotionValueEvent, useReducedMotion, useScroll } from "motion/react"
 import { capabilities } from "../content"
@@ -38,7 +39,7 @@ export default function ProductShowcase() {
                 <span className="map-signal">{activeCapability.signal}</span>
               </motion.div>
             </AnimatePresence>
-                <Link className="text-arrow-link" href={`/expertise/${activeCapability.id}`}>Explore this capability <span aria-hidden="true">↗</span></Link>
+                <Link className="text-arrow-link" href={`/expertise/${activeCapability.id}`}>Explore this capability <span aria-hidden="true">→</span></Link>
           </div>
 
           <nav className="capability-map-index" aria-label="Capability map chapters">
@@ -54,8 +55,8 @@ export default function ProductShowcase() {
 
         <div className="capability-map-chapters">
           {capabilities.map((item, index) => <article className="capability-chapter" id={`map-${item.id}`} key={item.id}>
-            <figure className="capability-art"><img src={item.mapImage} alt="" loading={index === 0 ? "eager" : "lazy"} /><figcaption><span>{item.number} / 06</span><strong>{item.category}</strong></figcaption></figure>
-            <div className="chapter-copy"><Eyebrow number={item.number}>{item.category}</Eyebrow><h3>{item.title}</h3><p>{item.text}</p><span>{item.tags}</span><Link className="text-arrow-link" href={`/expertise/${item.id}`}>See the capability details <span aria-hidden="true">↗</span></Link></div>
+            <figure className="capability-art"><Image src={item.mapImage} alt={item.mapImageAlt} width={1500} height={1000} sizes="(max-width: 900px) 100vw, 50vw" loading="lazy" placeholder="blur" blurDataURL="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" /><figcaption><span>{item.number} / 06</span><strong>{item.category}</strong></figcaption></figure>
+            <div className="chapter-copy"><Eyebrow number={item.number}>{item.category}</Eyebrow><h3>{item.title}</h3><p>{item.text}</p><span>{item.tags}</span><Link className="text-arrow-link" href={`/expertise/${item.id}`}>See the capability details <span aria-hidden="true">→</span></Link></div>
           </article>)}
         </div>
       </div>

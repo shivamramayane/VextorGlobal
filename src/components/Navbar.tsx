@@ -17,14 +17,14 @@ const menus = {
     label: "Solutions",
     groups: [
       { title: "BY BUSINESS GOAL", items: [["Launch a digital product", "Strategy through production delivery"], ["Modernize operations", "Connect systems and simplify workflows"], ["Scale with confidence", "Cloud, security, and performance"]] },
-      { title: "BY INDUSTRY", items: [["Financial services", "Digital systems for complex markets"], ["Healthcare", "Secure and thoughtful experiences"], ["Retail & logistics", "Connected commerce and operations"]] },
+      { title: "BY INDUSTRY", items: [["Financial services", "Digital systems for complex markets"], ["Healthcare", "Secure and thoughtful experiences"], ["Retail & commerce", "Connected customer and commerce journeys"], ["Logistics", "Clearer tools for moving operations"]] },
     ],
   },
   resources: {
     label: "Resources",
     groups: [
       { title: "HOW WE WORK", items: [["Our approach", "Discover, define, deliver, evolve"], ["Engagement models", "Pilot, project, or dedicated team"], ["About VextorGlobal", "Our company and operating principles"]] },
-      { title: "LEARN & EXPLORE", items: [["Insights", "Ideas on product, engineering, and delivery"], ["Customers", "Client stories and references / TODO"], ["Discuss a project", "Talk with a senior specialist"]] },
+      { title: "LEARN & EXPLORE", items: [["Insights", "Ideas on product, engineering, and delivery"], ["Customers", "Project concepts and partnership principles"], ["Discuss a project", "Talk with a senior specialist"]] },
     ],
   },
 } as const
@@ -39,11 +39,12 @@ const routes: Record<string, string> = {
   "Launch a digital product": "/expertise#digital-products",
   "Modernize operations": "/expertise#custom-software",
   "Scale with confidence": "/expertise#cloud-security",
-  "Financial services": "/work#financial-services",
-  Healthcare: "/company#industries",
-  "Retail & logistics": "/work#retail-logistics",
+  "Financial services": "/company#industry-financial-services",
+  Healthcare: "/company#industry-healthcare",
+  "Retail & commerce": "/company#industry-retail-commerce",
+  Logistics: "/company#industry-logistics",
   "Our approach": "/approach",
-  "Selected impact": "/work",
+  "Work": "/work",
   "About VextorGlobal": "/company",
   "Engagement models": "/pricing",
   "Insights": "/insights",
@@ -53,7 +54,7 @@ const routes: Record<string, string> = {
 }
 
 const simpleLinks = [
-  ["Impact", "/work"],
+  ["Work", "/work"],
   ["Customers", "/customers"],
   ["Pricing", "/pricing"],
   ["Company", "/company"],
@@ -120,12 +121,10 @@ export default function Navbar() {
         <nav className="desktop-navigation" aria-label="Main navigation">
           {(Object.keys(menus) as Array<keyof typeof menus>).map((key) => <button className={activeMenu === key ? "nav-menu-trigger active" : "nav-menu-trigger"} key={key} aria-expanded={activeMenu === key} aria-controls={`menu-${key}`} onClick={() => setActiveMenu(activeMenu === key ? null : key)}>{menus[key].label}<span>{activeMenu === key ? "−" : "+"}</span></button>)}
           {simpleLinks.map(([label, href]) => <Link className="nav-simple-link" href={href} key={href} aria-current={pathname === href ? "page" : undefined}>{label}</Link>)}
-          <div className="language-switch" aria-label="Language selection"><span aria-current="true">EN</span><span aria-disabled="true" title="German translation is not available yet">DE</span></div>
         </nav>
 
         <div className="header-actions">
-          <Link className="header-action header-action-primary" href="/expertise">Explore capabilities <span aria-hidden="true">↗</span></Link>
-          <Link className="header-action header-action-secondary" href="/contact">Get in touch <span aria-hidden="true">↗</span></Link>
+          <Link className="header-action header-action-secondary" href="/contact">Get in touch <span aria-hidden="true">→</span></Link>
         </div>
 
         <button ref={mobileToggleRef} className="mobile-menu-toggle" type="button" aria-label={mobileOpen ? "Close menu" : "Open menu"} aria-expanded={mobileOpen} aria-controls="mobile-navigation" onClick={() => setMobileOpen(!mobileOpen)}><span /><span /></button>
@@ -137,10 +136,10 @@ export default function Navbar() {
             {menus[activeMenu].groups.map((group) => <div className="mega-menu-group" key={group.title}>
               <p>{group.title}</p>
               {group.items.map(([title, description]) => <Link href={routes[title] ?? "/expertise"} key={title} onClick={closeMenus}>
-                <span><strong>{title}</strong><small>{description}</small></span><i aria-hidden="true">↗</i>
+                <span><strong>{title}</strong><small>{description}</small></span><i aria-hidden="true">→</i>
               </Link>)}
             </div>)}
-            <div className="mega-menu-note"><span>VEXTORGLOBAL / 01—06</span><p>Senior thinking.<br /><em>Measurable outcomes.</em></p><Link href="/contact" onClick={closeMenus}>Start a conversation <span aria-hidden="true">↗</span></Link></div>
+            <div className="mega-menu-note"><span>VEXTORGLOBAL / 01—06</span><p>Senior thinking.<br /><em>Measurable outcomes.</em></p><Link href="/contact" onClick={closeMenus}>Start a conversation <span aria-hidden="true">→</span></Link></div>
           </div>
         </motion.div>}
       </AnimatePresence>
@@ -149,8 +148,8 @@ export default function Navbar() {
     <AnimatePresence>
       {mobileOpen && <motion.nav id="mobile-navigation" aria-label="Mobile navigation" className="mobile-menu-panel" initial={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }} animate={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }} exit={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }} transition={{ duration: .4, ease: [0.22, 1, 0.36, 1] }}>
         <p className="mobile-menu-label">EXPLORE VEXTORGLOBAL</p>
-        {[["Expertise", "/expertise"], ["Our approach", "/approach"], ["Selected impact", "/work"], ["Customers", "/customers"], ["Pricing", "/pricing"], ["Insights", "/insights"], ["Company", "/company"], ["Contact", "/contact"]].map(([label, href], index) => <Link key={href} href={href} onClick={closeMenus}><span>{String(index + 1).padStart(2, "0")}</span>{label}<i aria-hidden="true">↗</i></Link>)}
-        <p className="mobile-menu-foot">Technology without borders. Impact without limits.</p>
+        {[["Expertise", "/expertise"], ["Our approach", "/approach"], ["Work", "/work"], ["Customers", "/customers"], ["Pricing", "/pricing"], ["Insights", "/insights"], ["Company", "/company"], ["Contact", "/contact"]].map(([label, href], index) => <Link key={href} href={href} onClick={closeMenus}><span>{String(index + 1).padStart(2, "0")}</span>{label}<i aria-hidden="true">→</i></Link>)}
+        <p className="mobile-menu-foot">Digital products, software, and technology advisory.</p>
       </motion.nav>}
     </AnimatePresence>
   </>

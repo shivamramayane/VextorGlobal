@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0b0c0b"/>
+  <path d="M0 510h1200" stroke="#ffffff" stroke-opacity=".12"/>
+  <circle cx="930" cy="310" r="240" fill="#c9ef70" fill-opacity=".08"/>
+  <circle cx="930" cy="310" r="176" fill="none" stroke="#c9ef70" stroke-opacity=".45"/>
+  <circle cx="930" cy="310" r="112" fill="none" stroke="#f5f4f1" stroke-opacity=".18"/>
+  <rect x="884" y="264" width="92" height="92" rx="27" transform="rotate(45 930 310)" fill="#c9ef70"/>
+  <text x="916" y="320" fill="#0b0c0b" font-family="Arial,sans-serif" font-size="29" font-weight="700">VG</text>
+  <text x="72" y="94" fill="#c9ef70" font-family="monospace" font-size="18" letter-spacing="4">VEXTORGLOBAL / TECHNOLOGY PARTNER</text>
+  <text x="72" y="264" fill="#f5f4f1" font-family="Arial,sans-serif" font-size="80" font-weight="700" letter-spacing="-4">Digital products.</text>
+  <text x="72" y="360" fill="#f5f4f1" font-family="Arial,sans-serif" font-size="80" font-weight="700" letter-spacing="-4">Software. Technology.</text>
+  <text x="74" y="430" fill="#b0b4ad" font-family="Arial,sans-serif" font-size="25">Senior teams for the systems businesses rely on.</text>
+  <text x="72" y="567" fill="#a2a99e" font-family="monospace" font-size="14" letter-spacing="2">STRATEGY · DESIGN · ENGINEERING · DELIVERY</text>
+</svg>

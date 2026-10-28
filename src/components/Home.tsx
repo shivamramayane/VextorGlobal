@@ -42,10 +42,10 @@ function GlobeVisual() {
         <circle className="wire-point" cx="478" cy="295" r="4" /><circle className="wire-point" cx="145" cy="303" r="4" />
         <circle className="signal-dot" cx="130" cy="115" r="4" />
       </svg>
-      <div className="system-node system-node-product"><span>01 / EXPERIENCE</span><strong>Product</strong><small>Useful by design</small><i>↗</i></div>
-      <div className="system-node system-node-data"><span>02 / INTELLIGENCE</span><strong>Data & AI</strong><small>Signals into action</small><i>↗</i></div>
-      <div className="system-node system-node-cloud"><span>03 / FOUNDATION</span><strong>Cloud</strong><small>Ready to scale</small><i>↗</i></div>
-      <div className="system-node system-node-operations"><span>04 / DELIVERY</span><strong>Operations</strong><small>Built to keep moving</small><i>↗</i></div>
+      <div className="system-node system-node-product"><span>01 / EXPERIENCE</span><strong>Product</strong><small>Useful by design</small></div>
+      <div className="system-node system-node-data"><span>02 / INTELLIGENCE</span><strong>Data & AI</strong><small>Signals into action</small></div>
+      <div className="system-node system-node-cloud"><span>03 / FOUNDATION</span><strong>Cloud</strong><small>Ready to scale</small></div>
+      <div className="system-node system-node-operations"><span>04 / DELIVERY</span><strong>Operations</strong><small>Built to keep moving</small></div>
       <div className="system-core-card"><span className="core-card-mark">VG</span><div><small>ONE CONNECTED TEAM</small><strong>Ideas into<br />working systems.</strong></div><b>V / 01</b></div>
       <span className="scene-index scene-index-top">GLOBAL DELIVERY <i>•</i> 24/7 READY</span>
       <span className="scene-index scene-index-bottom">STRATEGY <b>—</b> DESIGN <b>—</b> ENGINEERING</span>
@@ -63,8 +63,8 @@ export default function Home() {
       <div className="hero-layout">
         <div className="hero-copy">
           <Eyebrow>GLOBAL TECHNOLOGY PARTNER</Eyebrow>
-          <Heading id="home-title" as="h1" className="home-title"><span className="hero-title-line">Technology that moves</span><em className="hero-title-accent">business forward.</em></Heading>
-          <p className="hero-lead">We design, build, and modernize the digital systems ambitious organizations depend on—across every platform, market, and stage of growth.</p>
+          <Heading id="home-title" as="h1" className="home-title"><span className="hero-title-line">We build digital</span><em className="hero-title-accent">products and software.</em></Heading>
+          <p className="hero-lead">Our senior teams design, build, and modernize web platforms, mobile apps, and cloud systems. We work with your team from the first product decision through delivery.</p>
           <div className="hero-actions">
             <ButtonLink href="/contact" variant="solid">Discuss your project</ButtonLink>
             <ButtonLink href="#capability-map" variant="outline">Explore our capabilities</ButtonLink>
@@ -90,7 +90,7 @@ export default function Home() {
       </div>
       <div className="step-grid">
         {approachSteps.map((step, index) => <Reveal key={step.n} delay={index * .08}>
-          <article className="step-card"><span>{step.n}</span><div><h3>{step.title}</h3><p>{step.description}</p></div><i aria-hidden="true">↗</i></article>
+          <article className="step-card"><span>{step.n}</span><div><h3>{step.title}</h3><p>{step.description}</p></div></article>
         </Reveal>)}
       </div>
       <ButtonLink href="/approach" variant="text">Explore our approach</ButtonLink>
@@ -107,7 +107,7 @@ export default function Home() {
     </section>
 
     <section className="network-section section-shell" id="customers">
-      <div className="network-heading"><div><Eyebrow number="04">FICTIONAL PROJECT CONCEPTS</Eyebrow><Heading>Ideas with <em>room to grow.</em></Heading></div><Link className="text-arrow-link" href="/customers">Explore concepts <span aria-hidden="true">↗</span></Link></div>
+      <div className="network-heading"><div><Eyebrow number="04">FICTIONAL PROJECT CONCEPTS</Eyebrow><Heading>Ideas with <em>room to grow.</em></Heading></div><Link className="text-arrow-link" href="/customers">Explore concepts <span aria-hidden="true">→</span></Link></div>
       <p className="network-intro">A separate concept portfolio: fictional company and product names used to show the kinds of challenges our team can help shape. These are not client references or shipped work.</p>
       <div className="customer-logo-grid sample-client-grid" aria-label="Fictional project concepts">
         {projectConcepts.slice(0, 3).map((project, index) => <Reveal key={project.name} delay={index * .04}><article className="sample-client-card"><span>CONCEPT PROJECT / 0{index + 1}</span><strong>{project.name}</strong><small>{project.industry}</small><b>{project.product}</b><small className="concept-project-lead">{project.lead}</small><p>{project.brief}</p></article></Reveal>)}
@@ -122,7 +122,7 @@ export default function Home() {
     <section className="engineering-section section-shell">
       <div className="engineering-heading"><Eyebrow number="06">ENGINEERING FOR THE LONG TERM</Eyebrow><Heading>Enterprise-grade, <em>by design.</em></Heading><p>Resilience is built into the decisions behind the product—not added after launch.</p></div>
       <div className="engineering-grid">
-        {engineeringSignals.map(([number, title, text], index) => <Reveal key={number}><Card className="engineering-card"><span>{number}</span><h3>{title}</h3><p>{text}</p><i aria-hidden="true">↗</i></Card></Reveal>)}
+        {engineeringSignals.map(([number, title, text], index) => <Reveal key={number}><Card className="engineering-card"><span>{number}</span><h3>{title}</h3><p>{text}</p></Card></Reveal>)}
       </div>
     </section>
 
@@ -135,17 +135,17 @@ export default function Home() {
 
     <section className="value-tools-section section-shell" id="resources">
       <div className="section-heading"><div><Eyebrow number="08">PRACTICAL STARTING POINTS</Eyebrow><Heading>Value before <em>the sales call.</em></Heading></div><p>Use these prompts to organize your goals and questions before a first conversation.</p></div>
-      <div className="value-tools-grid">{freeTools.map((tool, index) => <Reveal key={tool.number}><Link className="value-tool-card" href={tool.href}><span>{tool.number} / WORKSHEET</span><strong>{tool.title}</strong><p>{tool.detail}</p><i>{tool.action} <b aria-hidden="true">↗</b></i></Link></Reveal>)}</div>
+      <div className="value-tools-grid">{freeTools.map((tool, index) => <Reveal key={tool.number}><Link className="value-tool-card" href={tool.href}><span>{tool.number} / WORKSHEET</span><strong>{tool.title}</strong><p>{tool.detail}</p><i>{tool.action} <b aria-hidden="true">→</b></i></Link></Reveal>)}</div>
     </section>
 
     <section className="case-section section-shell" id="selected-work">
       <div className="section-heading"><div><Eyebrow number="09">CONCEPT PROJECTS</Eyebrow><Heading>Designed for <em>real-world needs.</em></Heading></div><p>Fictional project concepts explore practical product and platform challenges. They are not client work or measured outcomes.</p></div>
       <div className="case-grid">
         {caseStudies.map((study, index) => <Reveal className="case-card-wrap" delay={index * .08} key={study.id}><Link className="case-card" href={`/work#${study.id}`}>
-          <span className="case-card-number">CONCEPT {study.number}</span><Eyebrow>{study.industry}</Eyebrow><h3>{study.client} · {study.product}</h3><p>{study.title}</p><div><span>{study.outcome}</span><i aria-hidden="true">↗</i></div>
+          <span className="case-card-number">CONCEPT {study.number}</span><Eyebrow>{study.industry}</Eyebrow><h3>{study.client} · {study.product}</h3><p>{study.title}</p><div><span>{study.outcome}</span><i aria-hidden="true">→</i></div>
         </Link></Reveal>)}
       </div>
-      <ButtonLink href="/work" variant="text">Explore selected impact</ButtonLink>
+      <ButtonLink href="/work" variant="text">View project concepts</ButtonLink>
     </section>
 
     <section className="faq-section section-shell" id="faq">

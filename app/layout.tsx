@@ -10,19 +10,23 @@ const editorialFont = Instrument_Serif({ subsets: ["latin"], weight: "400", styl
 const monoFont = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-ibm-plex-mono", display: "swap" })
 
 export const metadata: Metadata = {
-  title: { default: "VextorGlobal | Technology that moves business forward", template: "%s | VextorGlobal" },
-  description: "A global technology partner for digital products, intelligent systems, experience design, and secure cloud platforms.",
+  metadataBase: new URL("https://vextor-global.vercel.app"),
+  title: { default: "VextorGlobal | Digital products, software, and technology advisory", template: "%s | VextorGlobal" },
+  description: "VextorGlobal designs and builds web platforms, mobile apps, custom software, and cloud systems for businesses.",
   applicationName: "VextorGlobal",
+  icons: { icon: "/favicon.svg" },
   openGraph: {
     type: "website",
     siteName: "VextorGlobal",
-    title: "VextorGlobal | Technology that moves business forward",
-    description: "A global technology partner for digital products, intelligent systems, experience design, and secure cloud platforms.",
+    title: "VextorGlobal | Digital products, software, and technology advisory",
+    description: "VextorGlobal designs and builds web platforms, mobile apps, custom software, and cloud systems for businesses.",
+    images: [{ url: "/og-vextorglobal.png", width: 1200, height: 630, alt: "VextorGlobal digital products, software, and technology advisory" }],
   },
   twitter: {
-    card: "summary",
-    title: "VextorGlobal | Technology that moves business forward",
-    description: "A global technology partner for digital products, intelligent systems, experience design, and secure cloud platforms.",
+    card: "summary_large_image",
+    title: "VextorGlobal | Digital products, software, and technology advisory",
+    description: "VextorGlobal designs and builds web platforms, mobile apps, custom software, and cloud systems for businesses.",
+    images: ["/og-vextorglobal.png"],
   },
 }
 
