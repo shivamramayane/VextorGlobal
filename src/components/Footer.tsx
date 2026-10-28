@@ -20,6 +20,6 @@ export default function Footer() {
         {group.links.map(([label, href]) => <Link href={href} key={href}>{label}<span aria-hidden="true">{href.startsWith("mailto:") ? "↗" : "→"}</span></Link>)}
       </div>)}
     </div>
-    <div className="footer-bottom"><span>© 2026 VextorGlobal. All rights reserved. · Legal details: TEST — replace before publishing. · No analytics or advertising cookies.</span><nav aria-label="Legal"><Link href="/privacy">Privacy Notice</Link><Link href="/terms">Terms</Link><Link href="/privacy#cookies">Cookie notice</Link><a href="mailto:hello@vextorglobal.com">Contact <span aria-hidden="true">↗</span></a></nav></div>
+    <div className="footer-bottom"><span>© 2026 VextorGlobal. Indore, Madhya Pradesh, India. · No analytics or advertising cookies.</span><nav aria-label="Legal"><Link href="/privacy">Privacy Notice</Link><Link href="/terms">Terms</Link><Link href="/privacy#cookies">Cookie notice</Link><a href="mailto:hello@vextorglobal.com">Contact <span aria-hidden="true">↗</span></a></nav></div>
   </footer>
 }

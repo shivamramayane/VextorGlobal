@@ -20,8 +20,15 @@ export async function POST(request: Request) {
   const message = typeof payload.message === "string" ? payload.message.trim() : ""
   const company = typeof payload.company === "string" ? payload.company.trim() : ""
   const area = typeof payload.area === "string" ? payload.area.trim() : ""
-  const website = typeof payload.website === "string" ? payload.website.trim() : ""
-  if (website) return NextResponse.json({ ok: true }, { status: 202 })
+  const honeypot = typeof payload.companySite === "string" ? payload.companySite.trim() : typeof payload.website === "string" ? payload.website.trim() : ""
+
+  if (honeypot) {
+    if (process.env.NODE_ENV !== "production") {
+      return NextResponse.json({ error: "The hidden spam-check field was filled. Leave companySite blank and retry." }, { status: 400 })
+    }
+    return NextResponse.json({ ok: true }, { status: 202 })
+  }
+
   if (name.length < 2 || name.length > 120 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254 || company.length > 200 || area.length > 120 || message.length < 10 || message.length > 5000) {
     return NextResponse.json({ error: "Add a name, valid work email, and a project description of at least 10 characters." }, { status: 400 })
   }
@@ -43,9 +50,9 @@ export async function POST(request: Request) {
   const safeSubjectName = name.replace(/[\r\n]+/g, " ").slice(0, 120)
   const suppliedIdempotencyKey = request.headers.get("Idempotency-Key") || ""
   const idempotencyKey = /^[a-zA-Z0-9_-]{1,200}$/.test(suppliedIdempotencyKey) ? suppliedIdempotencyKey : randomUUID()
-  let mailResponse: Response
+
   try {
-    mailResponse = await fetch("https://api.resend.com/emails", {
+    const mailResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json", "Idempotency-Key": idempotencyKey },
       body: JSON.stringify({
@@ -58,13 +65,12 @@ export async function POST(request: Request) {
       }),
       signal: AbortSignal.timeout(10000),
     })
+
+    if (!mailResponse.ok) {
+      return NextResponse.json({ error: "Email delivery failed. Please email hello@vextorglobal.com." }, { status: 502 })
+    }
+    return NextResponse.json({ ok: true }, { status: 201 })
   } catch {
     return NextResponse.json({ error: "Email delivery failed. Please email hello@vextorglobal.com." }, { status: 502 })
   }
-
-  if (!mailResponse.ok) {
-    return NextResponse.json({ error: "Email delivery failed. Please email hello@vextorglobal.com." }, { status: 502 })
-  }
-
-  return NextResponse.json({ ok: true }, { status: 201 })
 }

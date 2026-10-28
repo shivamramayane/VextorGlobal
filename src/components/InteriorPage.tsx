@@ -62,7 +62,7 @@ function ContactForm() {
       formElement.reset()
       setMessage("")
       submissionKey.current = null
-      setStatus("Thanks — your project brief has been sent to our team. We’ll be in touch within one business day.")
+      setStatus("Thanks — your project brief has been received. We’ll be in touch within one business day.")
     } catch (error) {
       setStatus(error instanceof Error ? error.message : "We couldn’t send your message. Please try again.")
     } finally {
@@ -72,7 +72,7 @@ function ContactForm() {
   }
 
   return <form onSubmit={submit} className="contact-form">
-    <label className="contact-honeypot" aria-hidden="true">Leave this field empty<input name="website" tabIndex={-1} autoComplete="off" /></label>
+    <label className="contact-honeypot" aria-hidden="true">Leave this field empty<input name="companySite" tabIndex={-1} autoComplete="new-password" data-lpignore="true" /></label>
     <label>Name<input name="name" autoComplete="name" required minLength={2} placeholder="Your name" /></label>
     <label>Work email<input name="email" type="email" autoComplete="email" required placeholder="name@company.com" /></label>
     <label>Company<input name="company" autoComplete="organization" placeholder="Company name" /></label>
