@@ -66,7 +66,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const mobileToggleRef = useRef<HTMLButtonElement>(null)
-  const { scrollY, scrollYProgress } = useScroll()
+  const { scrollY } = useScroll()
 
   useMotionValueEvent(scrollY, "change", (latest) => setScrolled(latest > 24))
 
@@ -111,7 +111,6 @@ export default function Navbar() {
 
   return <>
     <motion.header className={`global-header ${scrolled ? "is-scrolled" : ""}`}>
-      <div className="reading-progress-track" aria-hidden="true"><motion.div className="reading-progress-fill" style={{ scaleX: scrollYProgress }} /></div>
       <div className="header-inner">
         <Link className="brand-lockup" href="/" aria-label="VextorGlobal home" onClick={closeMenus}>
           <span className="brand-emblem" aria-hidden="true"><i /><i /><i /></span>
