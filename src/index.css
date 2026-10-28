@@ -82,7 +82,8 @@
 .desktop-navigation { gap: clamp(15px, 2vw, 28px); }
 .nav-menu-trigger, .nav-simple-link { position: relative; padding: 10px 0; border: 0; background: transparent; color: #e0e1dc; font-size: 11px; font-weight: 500; white-space: nowrap; }
 .nav-menu-trigger { display: inline-flex; align-items: center; gap: 7px; }
-.nav-menu-trigger span { color: #b8d984; font-family: var(--font-mono); font-size: 13px; }
+.nav-menu-trigger span { color: #b8d984; font-family: var(--font-mono); font-size: 13px; transition: transform .2s ease; }
+.nav-menu-trigger.active span { transform: rotate(180deg); }
 .nav-menu-trigger:hover, .nav-menu-trigger.active, .nav-simple-link:hover { color: white; }
 .nav-simple-link::after { position: absolute; right: 100%; bottom: 4px; left: 0; height: 1px; background: var(--accent); content: ""; transition: right .25s ease; }
 .nav-simple-link:hover::after { right: 0; }

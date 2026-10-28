@@ -119,7 +119,7 @@ export default function Navbar() {
         </Link>
 
         <nav className="desktop-navigation" aria-label="Main navigation">
-          {(Object.keys(menus) as Array<keyof typeof menus>).map((key) => <button className={activeMenu === key ? "nav-menu-trigger active" : "nav-menu-trigger"} key={key} aria-expanded={activeMenu === key} aria-controls={`menu-${key}`} onClick={() => setActiveMenu(activeMenu === key ? null : key)}>{menus[key].label}<span>{activeMenu === key ? "−" : "+"}</span></button>)}
+          {(Object.keys(menus) as Array<keyof typeof menus>).map((key) => <button className={activeMenu === key ? "nav-menu-trigger active" : "nav-menu-trigger"} key={key} aria-expanded={activeMenu === key} aria-controls={`menu-${key}`} onClick={() => setActiveMenu(activeMenu === key ? null : key)}>{menus[key].label}<span aria-hidden="true">⌄</span></button>)}
           {simpleLinks.map(([label, href]) => <Link className="nav-simple-link" href={href} key={href} aria-current={pathname === href ? "page" : undefined}>{label}</Link>)}
         </nav>
 
