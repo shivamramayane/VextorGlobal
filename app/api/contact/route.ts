@@ -49,6 +49,9 @@ export async function POST(request: Request) {
   const safeArea = escapeHtml(area || "Not provided")
   const safeMessage = escapeHtml(message).replace(/\r?\n/g, "<br>")
   const safeSubjectName = name.replace(/[\r\n]+/g, " ").slice(0, 120)
+  // Resend's shared test sender works before the site has a verified domain.
+  // Set RESEND_FROM_EMAIL to a verified sender when the company domain is ready.
+  const from = process.env.RESEND_FROM_EMAIL || "VextorGlobal <onboarding@resend.dev>"
   const suppliedIdempotencyKey = request.headers.get("Idempotency-Key") || ""
   const idempotencyKey = /^[a-zA-Z0-9_-]{1,200}$/.test(suppliedIdempotencyKey) ? suppliedIdempotencyKey : randomUUID()
 
@@ -57,7 +60,7 @@ export async function POST(request: Request) {
       method: "POST",
       headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json", "Idempotency-Key": idempotencyKey },
       body: JSON.stringify({
-        from: "VextorGlobal <hello@vextorglobal.com>",
+        from,
         to: ["maruhshivam48@gmail.com"],
         reply_to: email,
         subject: `New website enquiry from ${safeSubjectName}`,
