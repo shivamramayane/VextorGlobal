@@ -5,11 +5,11 @@ import Navbar from "./Navbar"
 import Footer from "./Footer"
 import ProductShowcase from "./ProductShowcase"
 import { ButtonLink, Card, Eyebrow, Heading, Marquee, Reveal } from "./ui"
-import { approachSteps, caseStudies, faqs, freeTools, projectConcepts, stackTools } from "../content"
+import { approachSteps, faqs, freeTools, projectConcepts, stackTools } from "../content"
 
 const principles = [
   ["Business-first strategy", "Tie technology decisions to clear commercial value."],
-  ["Senior delivery teams", "Work directly with specialists matched to your challenge."],
+  ["A right-sized team", "Bring together the skills needed for the work."],
   ["Built-in resilience", "Plan for security, performance, and scale from day one."],
 ] as const
 
@@ -27,7 +27,7 @@ const outcomeMeasures = [
   ["04", "Operational efficiency", "Time saved, fewer handoffs, or less repetitive work."],
 ] as const
 
-const trustSignals = ["Senior-led teams", "Fixed-scope pilots", "Response within 1 business day", "NDA by default"] as const
+const trustSignals = ["AI solutions", "Digital products", "Cloud & software"] as const
 
 function GlobeVisual() {
   return <div className="hero-visual" role="img" aria-label="Animated map of product, data, cloud, and operations connected through one technology team">
@@ -47,7 +47,7 @@ function GlobeVisual() {
       <div className="system-node system-node-cloud"><span>03 / FOUNDATION</span><strong>Cloud</strong><small>Ready to scale</small></div>
       <div className="system-node system-node-operations"><span>04 / DELIVERY</span><strong>Operations</strong><small>Built to keep moving</small></div>
       <div className="system-core-card"><span className="core-card-mark">VG</span><div><small>ONE CONNECTED TEAM</small><strong>Ideas into<br />working systems.</strong></div><b>V / 01</b></div>
-      <span className="scene-index scene-index-top">GLOBAL DELIVERY <i>•</i> 24/7 READY</span>
+      <span className="scene-index scene-index-top">INDORE, INDIA <i>•</i> REMOTE COLLABORATION</span>
       <span className="scene-index scene-index-bottom">STRATEGY <b>—</b> DESIGN <b>—</b> ENGINEERING</span>
     </div>
     <div className="visual-footer"><span className="visual-pulse" />Six capabilities. One connected team.<span className="visual-footer-status">SYSTEM MAP <b>06</b></span></div>
@@ -86,7 +86,7 @@ export default function Home() {
     <section className="how-section section-shell" id="approach">
       <div className="section-heading">
         <div><Eyebrow number="02">HOW WE WORK</Eyebrow><Heading>Clarity before code. <em>Outcomes before output.</em></Heading></div>
-        <p>Our senior teams align business intent, user needs, and technical reality before we build—then deliver in measurable increments.</p>
+        <p>We align business intent, user needs, and technical reality before we build, then deliver in focused increments.</p>
       </div>
       <div className="step-grid">
         {approachSteps.map((step, index) => <Reveal key={step.n} delay={index * .08}>
@@ -108,14 +108,14 @@ export default function Home() {
 
     <section className="network-section section-shell" id="customers">
       <div className="network-heading"><div><Eyebrow number="04">FICTIONAL PROJECT CONCEPTS</Eyebrow><Heading>Ideas with <em>room to grow.</em></Heading></div><Link className="text-arrow-link" href="/customers">Explore concepts <span aria-hidden="true">→</span></Link></div>
-      <p className="network-intro">A separate concept portfolio: fictional company and product names used to show the kinds of challenges our team can help shape. These are not client references or shipped work.</p>
+      <p className="network-intro">Fictional company and product names illustrate the kinds of challenges we can help shape. These concepts are not client references or shipped work.</p>
       <div className="customer-logo-grid sample-client-grid" aria-label="Fictional project concepts">
-        {projectConcepts.slice(0, 3).map((project, index) => <Reveal key={project.name} delay={index * .04}><article className="sample-client-card"><span>CONCEPT PROJECT / 0{index + 1}</span><strong>{project.name}</strong><small>{project.industry}</small><b>{project.product}</b><small className="concept-project-lead">{project.lead}</small><p>{project.brief}</p></article></Reveal>)}
+        {projectConcepts.slice(0, 3).map((project, index) => <Reveal key={project.name} delay={index * .04}><article className="sample-client-card"><span>CONCEPT PROJECT / 0{index + 1}</span><strong>{project.name}</strong><small>{project.industry}</small><b>{project.product}</b><p>{project.brief}</p></article></Reveal>)}
       </div>
     </section>
 
     <section className="stack-section section-shell">
-      <div className="section-heading"><div><Eyebrow number="05">TECHNOLOGY ECOSYSTEM</Eyebrow><Heading>Built to fit <em>your digital estate.</em></Heading></div><p>Examples from the stack your team identified. Project-specific integrations and experience are confirmed during discovery.</p></div>
+      <div className="section-heading"><div><Eyebrow number="05">TECHNOLOGY ECOSYSTEM</Eyebrow><Heading>Built to fit <em>your digital estate.</em></Heading></div><p>Technologies we work with, selected to fit the product, team, and operating context.</p></div>
       <Marquee label="Technology ecosystem examples" items={[...stackTools, ...stackTools]} slow />
     </section>
 
@@ -134,28 +134,18 @@ export default function Home() {
     </section>
 
     <section className="value-tools-section section-shell" id="resources">
-      <div className="section-heading"><div><Eyebrow number="08">PRACTICAL STARTING POINTS</Eyebrow><Heading>Value before <em>the sales call.</em></Heading></div><p>Use these prompts to organize your goals and questions before a first conversation.</p></div>
-      <div className="value-tools-grid">{freeTools.map((tool, index) => <Reveal key={tool.number}><Link className="value-tool-card" href={tool.href}><span>{tool.number} / WORKSHEET</span><strong>{tool.title}</strong><p>{tool.detail}</p><i>{tool.action} <b aria-hidden="true">→</b></i></Link></Reveal>)}</div>
-    </section>
-
-    <section className="case-section section-shell" id="selected-work">
-      <div className="section-heading"><div><Eyebrow number="09">CONCEPT PROJECTS</Eyebrow><Heading>Designed for <em>real-world needs.</em></Heading></div><p>Fictional project concepts explore practical product and platform challenges. They are not client work or measured outcomes.</p></div>
-      <div className="case-grid">
-        {caseStudies.map((study, index) => <Reveal className="case-card-wrap" delay={index * .08} key={study.id}><Link className="case-card" href={`/work/${study.id}`}>
-          <span className="case-card-number">CONCEPT {study.number}</span><Eyebrow>{study.industry}</Eyebrow><h3>{study.client} · {study.product}</h3><p>{study.title}</p><div><span>{study.outcome}</span><i aria-hidden="true">→</i></div>
-        </Link></Reveal>)}
-      </div>
-      <ButtonLink href="/work" variant="text">View project concepts</ButtonLink>
+      <div className="section-heading"><div><Eyebrow number="08">PRACTICAL STARTING POINTS</Eyebrow><Heading>Make the first <em>conversation useful.</em></Heading></div><p>Choose a topic to open the contact form with a few prompts to get started.</p></div>
+      <div className="value-tools-grid">{freeTools.map((tool) => <Reveal key={tool.number}><Link className="value-tool-card" href={tool.href}><span>{tool.number} / DISCUSSION TOPIC</span><strong>{tool.title}</strong><p>{tool.detail}</p><i>{tool.action} <b aria-hidden="true">→</b></i></Link></Reveal>)}</div>
     </section>
 
     <section className="faq-section section-shell" id="faq">
-      <div className="section-heading"><div><Eyebrow number="10">COMMON QUESTIONS</Eyebrow><Heading>Good to know <em>before we start.</em></Heading></div><p>Some of the practical questions teams bring to the first conversation.</p></div>
+      <div className="section-heading"><div><Eyebrow number="09">COMMON QUESTIONS</Eyebrow><Heading>Good to know <em>before we start.</em></Heading></div><p>Some of the practical questions teams bring to the first conversation.</p></div>
       <div className="faq-list">{faqs.map((faq, index) => <details className="faq-item" key={faq.question}><summary><span>{String(index + 1).padStart(2, "0")}</span>{faq.question}<i aria-hidden="true">+</i></summary><p>{faq.answer}</p></details>)}</div>
     </section>
 
     <section className="final-cta">
       <div className="cta-visual" aria-hidden="true"><span className="cta-orbit cta-orbit-one" /><span className="cta-orbit cta-orbit-two" /><i className="cta-core">VG</i></div>
-      <div className="cta-content"><Eyebrow>READY WHEN YOU ARE</Eyebrow><Heading>Bring a clear challenge. <em>Build the next step.</em></Heading><p>A conversation with a senior specialist is a clear place to start.</p><div className="cta-actions"><ButtonLink href="/contact" variant="solid">Discuss a project</ButtonLink><a href="mailto:hello@vextorglobal.com">hello@vextorglobal.com <span aria-hidden="true">↗</span></a></div><div className="cta-trust">{trustSignals.map((item, index) => <span key={item}>{index > 0 && <i />} {item}</span>)}</div></div>
+      <div className="cta-content"><Eyebrow>READY WHEN YOU ARE</Eyebrow><Heading>Bring a clear challenge. <em>Build the next step.</em></Heading><p>Share the opportunity and we’ll help shape a practical next step.</p><div className="cta-actions"><ButtonLink href="/contact" variant="solid">Discuss a project</ButtonLink><a href="mailto:hello@vextorglobal.com">hello@vextorglobal.com <span aria-hidden="true">↗</span></a></div><div className="cta-trust">{trustSignals.map((item, index) => <span key={item}>{index > 0 && <i />} {item}</span>)}</div></div>
     </section>
 
     <Footer />

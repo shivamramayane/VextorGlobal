@@ -32,7 +32,7 @@ export async function POST(request: Request) {
   if (name.length < 2 || name.length > 120 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254 || company.length > 200 || area.length > 120 || message.length < 10 || message.length > 5000) {
     return NextResponse.json({ error: "Add a name, valid work email, and a project description of at least 10 characters." }, { status: 400 })
   }
-  if (payload.privacyAcknowledged !== true && payload.privacyAcknowledged !== "true") {
+  if (payload.privacyAcknowledged !== true && payload.privacyAcknowledged !== "true" && payload.privacyAcknowledged !== "on") {
     return NextResponse.json({ error: "Please confirm you have read the Privacy Notice." }, { status: 400 })
   }
 

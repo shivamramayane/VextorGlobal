@@ -17,14 +17,14 @@ const menus = {
     label: "Solutions",
     groups: [
       { title: "APPLY AI IN PRACTICE", items: [["Build AI agents", "Connect language models to useful workflows"], ["Add AI to a product", "Bring intelligent features to web and mobile"], ["Plan an AI rollout", "Find value, readiness, and a clear next step"]] },
-      { title: "BY INDUSTRY", items: [["Financial services", "Digital systems for complex markets"], ["Healthcare", "Secure and thoughtful experiences"], ["Retail & commerce", "Connected customer and commerce journeys"], ["Logistics", "Clearer tools for moving operations"]] },
+      { title: "POTENTIAL APPLICATIONS", items: [["Financial services", "Explore product and workflow opportunities"], ["Healthcare", "Explore digital service opportunities"], ["Retail & commerce", "Explore customer and commerce journeys"], ["Logistics", "Explore operations and coordination tools"]] },
     ],
   },
   resources: {
     label: "Resources",
     groups: [
       { title: "HOW WE WORK", items: [["Our approach", "Discover, define, deliver, evolve"], ["Engagement models", "Pilot, project, or dedicated team"], ["About VextorGlobal", "Our company and operating principles"]] },
-      { title: "LEARN & EXPLORE", items: [["Insights", "Ideas on product, engineering, and delivery"], ["Customers", "Project concepts and partnership principles"], ["Discuss a project", "Talk with a senior specialist"]] },
+      { title: "LEARN & EXPLORE", items: [["Insights", "Ideas on product, engineering, and delivery"], ["Customers", "Project concepts and partnership principles"], ["Discuss a project", "Talk through a technology challenge"]] },
     ],
   },
 } as const
@@ -56,6 +56,7 @@ const simpleLinks = [
   ["Work", "/work"],
   ["Customers", "/customers"],
   ["Pricing", "/pricing"],
+  ["Insights", "/insights"],
   ["Company", "/company"],
 ] as const
 
@@ -137,7 +138,7 @@ export default function Navbar() {
                 <span><strong>{title}</strong><small>{description}</small></span><i aria-hidden="true">→</i>
               </Link>)}
             </div>)}
-            <div className="mega-menu-note"><span>VEXTORGLOBAL / 01—06</span><p>Senior thinking.<br /><em>Measurable outcomes.</em></p><Link href="/contact" onClick={closeMenus}>Start a conversation <span aria-hidden="true">→</span></Link></div>
+            <div className="mega-menu-note"><span>VEXTORGLOBAL / INDORE, INDIA</span><p>Practical systems.<br /><em>Built around the work.</em></p><Link href="/contact" onClick={closeMenus}>Start a conversation <span aria-hidden="true">→</span></Link></div>
           </div>
         </motion.div>}
       </AnimatePresence>

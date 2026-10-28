@@ -11,12 +11,12 @@ export const industries = ["Financial services", "Healthcare", "Retail & commerc
 
 // Fictional project concepts are identified as such in the UI; they are not client references.
 export const projectConcepts = [
-  { name: "Northstar Market", product: "Orbit Commerce", lead: "Maya Chen · Product Director", industry: "RETAIL & COMMERCE", brief: "Concept brief: bring discovery, checkout, and order operations into one clear customer journey." },
-  { name: "Aster Health", product: "Aster Connect", lead: "Dr. Leena Rao · Digital Health Lead", industry: "HEALTHCARE", brief: "Concept brief: simplify patient-facing service workflows across digital channels." },
-  { name: "Meridian Freight", product: "Meridian Control", lead: "Daniel Brooks · Operations Director", industry: "LOGISTICS", brief: "Concept brief: connect dispatch operations through a modernized logistics platform." },
-  { name: "Canopy Finance", product: "Canopy Onboard", lead: "Amara Okafor · Product Owner", industry: "FINANCIAL SERVICES", brief: "Concept brief: make secure customer onboarding easier to understand and complete." },
-  { name: "Tidal Software", product: "Tidal Workspace", lead: "Ethan Park · Platform Lead", industry: "SOFTWARE", brief: "Concept brief: evolve a SaaS product roadmap and strengthen its cloud foundations." },
-  { name: "CivicSpring", product: "Civic Access", lead: "Priya Nair · Service Designer", industry: "PUBLIC SECTOR", brief: "Concept brief: improve access to clear, inclusive digital public services." },
+  { name: "Northstar Market", product: "Orbit Commerce", industry: "RETAIL & COMMERCE", brief: "Concept brief: bring discovery, checkout, and order operations into one clear customer journey." },
+  { name: "Aster Health", product: "Aster Connect", industry: "HEALTHCARE", brief: "Concept brief: simplify patient-facing service workflows across digital channels." },
+  { name: "Meridian Freight", product: "Meridian Control", industry: "LOGISTICS", brief: "Concept brief: connect dispatch operations through a modernized logistics platform." },
+  { name: "Canopy Finance", product: "Canopy Onboard", industry: "FINANCIAL SERVICES", brief: "Concept brief: make secure customer onboarding easier to understand and complete." },
+  { name: "Tidal Software", product: "Tidal Workspace", industry: "SOFTWARE", brief: "Concept brief: evolve a SaaS product roadmap and strengthen its cloud foundations." },
+  { name: "CivicSpring", product: "Civic Access", industry: "PUBLIC SECTOR", brief: "Concept brief: improve access to clear, inclusive digital public services." },
 ] as const
 
 // These are fictional concept projects, not client case studies or measured results.
@@ -29,7 +29,7 @@ export const caseStudies = [
 export const approachSteps = [
   { n: "01", title: "Discover", description: "Align leadership, users, data, and technical constraints around the real opportunity." },
   { n: "02", title: "Define", description: "Shape the product vision, architecture, roadmap, and success measures." },
-  { n: "03", title: "Deliver", description: "Build in focused increments with senior multidisciplinary teams and total transparency." },
+  { n: "03", title: "Deliver", description: "Build in focused increments, share progress, and review decisions as the work develops." },
   { n: "04", title: "Evolve", description: "Measure performance, strengthen capability, and adapt the platform as your business grows." },
 ] as const
 
@@ -53,9 +53,9 @@ export const faqs = [
 ] as const
 
 export const freeTools = [
-  { number: "01", title: "Project estimate worksheet", detail: "Outline goals, users, integrations, and constraints before estimating effort.", href: "/contact?topic=project-estimate", action: "Plan a project" },
-  { number: "02", title: "App cost planning guide", detail: "Compare scope and complexity drivers with a structured planning conversation.", href: "/contact?topic=app-cost", action: "Plan an application" },
-  { number: "03", title: "Technology stack checklist", detail: "Review ownership, security, scalability, and delivery fit across your stack.", href: "/contact?topic=stack-checklist", action: "Review your stack" },
+  { number: "01", title: "Project scope conversation", detail: "Outline goals, users, integrations, and constraints with our team.", href: "/contact?topic=project-estimate", action: "Discuss project scope" },
+  { number: "02", title: "Application cost discussion", detail: "Talk through the scope and complexity that shape an application budget.", href: "/contact?topic=app-cost", action: "Discuss application scope" },
+  { number: "03", title: "Technology stack review", detail: "Bring your current setup and questions to a focused conversation.", href: "/contact?topic=stack-checklist", action: "Discuss your stack" },
 ] as const
 
 export const insights = [
