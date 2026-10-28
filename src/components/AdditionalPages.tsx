@@ -1,9 +1,10 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import Navbar from "./Navbar"
 import Footer from "./Footer"
-import { engagementModels, faqs, insights, projectConcepts } from "../content"
+import { approachSteps, capabilities, engagementModels, faqs, insights, projectConcepts } from "../content"
 import { ButtonLink, Card, Eyebrow, Heading, InPageNav, Reveal } from "./ui"
 
 function PageHero({ eyebrow, lead, title, accent }: { eyebrow: string; lead: string; title: string; accent: string }) {
@@ -34,6 +35,19 @@ export function InsightsPage() {
   return <main className="site-page additional-page"><Navbar /><PageHero eyebrow="VEXTORGLOBAL / INSIGHTS" title="Ideas for better" accent="technology decisions." lead="Notes on product strategy, software engineering, cloud, and the practical work of making systems useful." />
     <section className="section-shell insights-list-section"><InPageNav links={[{ label: "Articles", href: "#articles" }, { label: "Expertise", href: "/expertise" }, { label: "Start a conversation", href: "/contact" }]} /><div className="interior-section-intro" id="articles"><Eyebrow number="01">ARTICLES & FIELD NOTES</Eyebrow><Heading>Useful thinking, <em>in context.</em></Heading><p>Practical notes on product, engineering, and delivery, written for teams making technology decisions.</p></div><div className="insights-card-grid">{insights.map((article, index) => <Reveal key={article.slug} delay={index * .06}><Link className="insight-card" href={`/insights/${article.slug}`}><span>{article.category} · FIELD NOTE</span><h2>{article.title}</h2><p>{article.excerpt}</p><i>Read field note <b aria-hidden="true">→</b></i></Link></Reveal>)}</div></section>
     <ClosingCta title="Have a question" accent="for our team?" /><Footer /></main>
+}
+
+export function ExpertiseIndexPage() {
+  return <main className="site-page additional-page"><Navbar /><PageHero eyebrow="AI SOLUTIONS & SUPPORTING SERVICES" title="AI at the center." accent="Services built around it." lead="AI agents, automation, and intelligent products sit at the center of our work. Product, design, software, cloud, and advisory services help put them to use." />
+    <section className="section-shell customer-page-section"><InPageNav links={[{ label: "Capabilities", href: "#capabilities" }, { label: "Our approach", href: "/approach" }, { label: "Contact", href: "/contact" }]} /><div className="interior-section-intro" id="capabilities"><Eyebrow number="01">WHAT WE DO</Eyebrow><Heading>One connected set <em>of capabilities.</em></Heading><p>Choose a service to see its scope, process, and related work.</p></div><div className="interior-capability-grid">{capabilities.map((capability, index) => <Reveal key={capability.id} delay={index * .04}><Card className="interior-capability-card"><span className="interior-card-number">{capability.number}</span><figure className="interior-capability-image"><Image src={capability.mapImage} alt={capability.mapImageAlt} width={1200} height={900} sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" loading="lazy" placeholder="blur" blurDataURL="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" /></figure><Eyebrow>{capability.category}</Eyebrow><h2>{capability.title}</h2><p>{capability.text}</p><Link href={`/expertise/${capability.id}`}>Explore {capability.title.toLowerCase()} <span aria-hidden="true">→</span></Link></Card></Reveal>)}</div></section>
+    <ClosingCta title="Have an opportunity" accent="to explore?" /><Footer /></main>
+}
+
+export function ApproachOverviewPage() {
+  return <main className="site-page additional-page"><Navbar /><PageHero eyebrow="OUR DELIVERY APPROACH" title="Clarity before code." accent="Outcomes before output." lead="We align business intent, user needs, and technical reality before building, then work in focused increments with clear review points." />
+    <section className="section-shell pricing-model-section"><InPageNav links={[{ label: "Stages", href: "#approach-stages" }, { label: "Principles", href: "#approach-principles" }, { label: "Engagement models", href: "/pricing" }]} /><div className="interior-section-intro" id="approach-stages"><Eyebrow number="01">FOUR DELIVERY STAGES</Eyebrow><Heading>One shared <em>direction.</em></Heading><p>Keep decisions, delivery, and learning connected to the problem being solved.</p></div><div className="approach-timeline">{approachSteps.map((step, index) => <Reveal key={step.n} delay={index * .06}><article className="approach-stage"><span>{step.n}</span><div><h2>{step.title}</h2><p>{step.description}</p></div></article></Reveal>)}</div></section>
+    <section className="section-shell pricing-process-section" id="approach-principles"><div className="interior-section-intro"><Eyebrow number="02">WHAT GUIDES THE WORK</Eyebrow><Heading>Make progress <em>easy to see.</em></Heading><p>Plans, decisions, and risks stay visible to the people who need them. Outcome measures are agreed together and reviewed against evidence.</p></div><div className="delivery-principle-grid">{[["Start with context", "Understand users, constraints, and existing systems before choosing a direction."], ["Work in increments", "Share progress regularly and keep the next decision clear."], ["Plan for handover", "Document important choices so your team can operate and evolve the result."]].map(([title, text]) => <Card key={title}><h3>{title}</h3><p>{text}</p></Card>)}</div></section>
+    <ClosingCta title="Discuss your" accent="next step." /><Footer /></main>
 }
 
 const articleBody: Record<string, Array<{ title: string; text: string }>> = {

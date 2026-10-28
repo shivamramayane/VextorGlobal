@@ -17,7 +17,7 @@ const menus = {
     label: "Solutions",
     groups: [
       { title: "APPLY AI IN PRACTICE", items: [["Build AI agents", "Connect language models to useful workflows"], ["Add AI to a product", "Bring intelligent features to web and mobile"], ["Plan an AI rollout", "Find value, readiness, and a clear next step"]] },
-      { title: "POTENTIAL APPLICATIONS", items: [["Financial services", "Explore product and workflow opportunities"], ["Healthcare", "Explore digital service opportunities"], ["Retail & commerce", "Explore customer and commerce journeys"], ["Logistics", "Explore operations and coordination tools"]] },
+      { title: "SUPPORTING SERVICES", items: [["Digital products", "Build web and mobile products with AI features"], ["Cloud & security", "Plan secure, reliable product foundations"], ["Custom software", "Connect systems and automate workflows"], ["IT consulting", "Assess AI opportunities and plan next steps"]] },
     ],
   },
   resources: {
@@ -39,10 +39,10 @@ const routes: Record<string, string> = {
   "Build AI agents": "/expertise/intelligent-systems",
   "Add AI to a product": "/expertise/digital-products",
   "Plan an AI rollout": "/expertise/it-consulting",
-  "Financial services": "/company#industry-financial-services",
-  Healthcare: "/company#industry-healthcare",
-  "Retail & commerce": "/company#industry-retail-commerce",
-  Logistics: "/company#industry-logistics",
+  "Financial services": "/expertise/intelligent-systems",
+  Healthcare: "/expertise/intelligent-systems",
+  "Retail & commerce": "/expertise/digital-products",
+  Logistics: "/expertise/custom-software",
   "Our approach": "/approach",
   "Work": "/work",
   "About VextorGlobal": "/company",

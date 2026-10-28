@@ -5,8 +5,8 @@ import Link from "next/link"
 import Image from "next/image"
 import Navbar from "./Navbar"
 import Footer from "./Footer"
-import { approachSteps, capabilities, caseStudies, industries } from "../content"
-import { ButtonLink, Card, Eyebrow, Heading, InPageNav, Reveal, StatCounter } from "./ui"
+import { approachSteps, capabilities, caseStudies } from "../content"
+import { ButtonLink, Card, Eyebrow, Heading, InPageNav, Reveal } from "./ui"
 
 type PageType = "expertise" | "approach" | "work" | "company" | "contact" | "not-found"
 
@@ -139,18 +139,14 @@ function WorkPage() {
 }
 
 function CompanyPage() {
-  const industryIds = ["financial-services", "healthcare", "retail-commerce", "logistics", "public-sector"]
   return <div className="company-content">
-    <InPageNav links={[{ label: "Company", href: "#company-overview" }, { label: "Industries", href: "#industries" }, { label: "Team model", href: "#company-team" }, { label: "How we partner", href: "#company-principles" }]} />
+    <InPageNav links={[{ label: "About", href: "#company-overview" }, { label: "Services", href: "#company-services" }, { label: "Founder note", href: "#founder-note" }, { label: "How we work", href: "#company-principles" }]} />
     <section className="company-intro section-shell">
-      <div id="company-overview"><Eyebrow number="01">WHAT DEFINES US</Eyebrow><Heading>Technology services, <em>based in Indore.</em></Heading></div>
-      <div><p>VextorGlobal is an Indore-based technology services company focused on AI solutions, digital products, and the systems that support them.</p><div className="company-stat-row"><StatCounter value={6} label="Capabilities" /><StatCounter value={4} label="Delivery stages" /><StatCounter value={3} label="Engagement models" /></div></div>
+      <div id="company-overview"><Eyebrow number="01">ABOUT VEXTORGLOBAL</Eyebrow><Heading>Technology services, <em>based in Indore.</em></Heading></div>
+      <div><p>VextorGlobal is an independent technology services business based in Indore, Madhya Pradesh, India. We help organizations plan and build AI solutions, digital products, custom software, and the cloud foundations behind them.</p><p>Our work starts with the problem people need to solve. We shape the team and delivery around that context, then make decisions and progress visible.</p></div>
     </section>
-    <section className="company-network section-shell" id="industries">
-      <div className="interior-section-intro"><Eyebrow number="02">AREAS OF APPLICATION</Eyebrow><Heading>Where these services <em>can be applied.</em></Heading><p>These are areas to explore with a client, not a list of past engagements or sector credentials.</p></div>
-      <div className="company-industry-list">{industries.map((industry, index) => <Reveal key={industry} delay={index * .05}><Link id={`industry-${industryIds[index]}`} href={`/contact?topic=industry-${industryIds[index]}`}><span>0{index + 1}</span><strong>{industry}</strong><span aria-hidden="true">→</span></Link></Reveal>)}</div>
-    </section>
-    <section className="company-team-section section-shell" id="company-team"><div className="interior-section-intro"><Eyebrow number="03">HOW PROJECT ROLES ARE SET</Eyebrow><Heading>The right disciplines, <em>close to the work.</em></Heading><p>Roles and responsibilities are agreed around the scope, decisions, and people who will use the result.</p></div><div className="delivery-principle-grid">{[["A clear point of contact", "Agree who coordinates questions, decisions, and next steps."], ["Relevant disciplines", "Bring product, design, engineering, data, and cloud skills to the work that needs them."], ["Knowledge stays with your team", "Document important choices and include handover in the delivery plan."]].map(([title, text]) => <Card key={title}><h3>{title}</h3><p>{text}</p></Card>)}</div></section>
+    <section className="company-team-section section-shell" id="company-services"><div className="interior-section-intro"><Eyebrow number="02">WHAT WE DO</Eyebrow><Heading>AI first, <em>built for real work.</em></Heading><p>AI solutions sit at the center of our services. Product, design, software, cloud, and advisory work help put them into use.</p></div><div className="delivery-principle-grid">{capabilities.map((item) => <Card key={item.id}><h3>{item.title}</h3><p>{item.text}</p><Link href={`/expertise/${item.id}`}>Explore capability <span aria-hidden="true">→</span></Link></Card>)}</div></section>
+    <section className="company-principles section-shell" id="founder-note"><div className="interior-section-intro"><Eyebrow number="03">A NOTE FROM THE FOUNDER</Eyebrow><Heading>Useful technology <em>starts with listening.</em></Heading><p>VextorGlobal is being built around a simple idea: technology should make a real task clearer, faster, or more useful for the people doing it. We start by understanding that task, then choose the tools and scope that fit.</p><p>Based in Indore, Madhya Pradesh, India.</p></div></section>
     <section className="company-principles section-shell" id="company-principles"><div className="interior-section-intro"><Eyebrow number="04">HOW WE PARTNER</Eyebrow><Heading>Built around <em>shared ownership.</em></Heading><p>Good technology partnerships are clear about roles, decisions, and how knowledge moves between teams.</p></div><div className="delivery-principle-grid">{[["Work in the open", "Make plans, decisions, and risks visible to the people who need them."], ["Keep expertise close", "Put specialist judgment near the work and the decisions it affects."], ["Leave teams stronger", "Document important choices and support effective handover."]].map(([title, text]) => <Card key={title}><h3>{title}</h3><p>{text}</p></Card>)}</div></section>
   </div>
 }

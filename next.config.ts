@@ -3,6 +3,7 @@ import type { NextConfig } from "next"
 const nextConfig: NextConfig = {
   turbopack: { root: process.cwd() },
   poweredByHeader: false,
+  productionBrowserSourceMaps: false,
   async headers() {
     if (process.env.NODE_ENV !== "production") return []
 

@@ -120,7 +120,7 @@ export default function Home() {
     </section>
 
     <section className="engineering-section section-shell">
-      <div className="engineering-heading"><Eyebrow number="06">ENGINEERING FOR THE LONG TERM</Eyebrow><Heading>Enterprise-grade, <em>by design.</em></Heading><p>Resilience is built into the decisions behind the product—not added after launch.</p></div>
+      <div className="engineering-heading"><Eyebrow number="06">ENGINEERING FOR THE LONG TERM</Eyebrow><Heading>Built for the <em>long run.</em></Heading><p>Plan for security, performance, and reliability from the first product decisions.</p></div>
       <div className="engineering-grid">
         {engineeringSignals.map(([number, title, text], index) => <Reveal key={number}><Card className="engineering-card"><span>{number}</span><h3>{title}</h3><p>{text}</p></Card></Reveal>)}
       </div>
@@ -134,7 +134,7 @@ export default function Home() {
     </section>
 
     <section className="value-tools-section section-shell" id="resources">
-      <div className="section-heading"><div><Eyebrow number="08">PRACTICAL STARTING POINTS</Eyebrow><Heading>Make the first <em>conversation useful.</em></Heading></div><p>Choose a topic to open the contact form with a few prompts to get started.</p></div>
+      <div className="section-heading"><div><Eyebrow number="08">START WITH A TOPIC</Eyebrow><Heading>Make the first <em>conversation useful.</em></Heading></div><p>Choose a topic to open the contact form with a few prompts to get started.</p></div>
       <div className="value-tools-grid">{freeTools.map((tool) => <Reveal key={tool.number}><Link className="value-tool-card" href={tool.href}><span>{tool.number} / DISCUSSION TOPIC</span><strong>{tool.title}</strong><p>{tool.detail}</p><i>{tool.action} <b aria-hidden="true">→</b></i></Link></Reveal>)}</div>
     </section>
 

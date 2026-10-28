@@ -3,6 +3,31 @@ import { NextResponse } from "next/server"
 
 export const runtime = "nodejs"
 
+const requestWindowMs = 10 * 60 * 1000
+const maxRequestsPerWindow = 8
+const requestCounts = new Map<string, { count: number; resetAt: number }>()
+
+function exceedsRequestLimit(request: Request) {
+  const forwarded = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
+  const ip = request.headers.get("x-real-ip")?.trim() || forwarded || "unknown"
+  const now = Date.now()
+
+  if (requestCounts.size > 10_000) {
+    for (const [key, value] of requestCounts) {
+      if (value.resetAt <= now) requestCounts.delete(key)
+    }
+    if (requestCounts.size > 10_000) requestCounts.clear()
+  }
+
+  const current = requestCounts.get(ip)
+  if (!current || current.resetAt <= now) {
+    requestCounts.set(ip, { count: 1, resetAt: now + requestWindowMs })
+    return false
+  }
+  current.count += 1
+  return current.count > maxRequestsPerWindow
+}
+
 export async function POST(request: Request) {
   let payload: Record<string, unknown>
   try {
@@ -27,6 +52,10 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "The hidden spam-check field was filled. Leave companySite blank and retry." }, { status: 400 })
     }
     return NextResponse.json({ ok: true }, { status: 202 })
+  }
+
+  if (exceedsRequestLimit(request)) {
+    return NextResponse.json({ error: "Too many enquiries from this network. Please wait a few minutes and try again." }, { status: 429, headers: { "Retry-After": String(requestWindowMs / 1000) } })
   }
 
   if (name.length < 2 || name.length > 120 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254 || company.length > 200 || area.length > 120 || message.length < 10 || message.length > 5000) {
