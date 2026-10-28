@@ -111,7 +111,7 @@ export default function Navbar() {
 
   return <>
     <motion.header className={`global-header ${scrolled ? "is-scrolled" : ""}`}>
-      <motion.div className="reading-progress" style={{ scaleX: scrollYProgress }} />
+      <div className="reading-progress-track" aria-hidden="true"><motion.div className="reading-progress-fill" style={{ scaleX: scrollYProgress }} /></div>
       <div className="header-inner">
         <Link className="brand-lockup" href="/" aria-label="VextorGlobal home" onClick={closeMenus}>
           <span className="brand-emblem" aria-hidden="true"><i /><i /><i /></span>
@@ -119,7 +119,7 @@ export default function Navbar() {
         </Link>
 
         <nav className="desktop-navigation" aria-label="Main navigation">
-          {(Object.keys(menus) as Array<keyof typeof menus>).map((key) => <button className={activeMenu === key ? "nav-menu-trigger active" : "nav-menu-trigger"} key={key} aria-expanded={activeMenu === key} aria-controls={`menu-${key}`} onClick={() => setActiveMenu(activeMenu === key ? null : key)}>{menus[key].label}<span aria-hidden="true">⌄</span></button>)}
+          {(Object.keys(menus) as Array<keyof typeof menus>).map((key) => <button className={activeMenu === key ? "nav-menu-trigger active" : "nav-menu-trigger"} key={key} aria-expanded={activeMenu === key} aria-controls={`menu-${key}`} onClick={() => setActiveMenu(activeMenu === key ? null : key)}>{menus[key].label}<span className="nav-menu-chevron" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="m2.5 4.5 3.5 3 3.5-3" /></svg></span></button>)}
           {simpleLinks.map(([label, href]) => <Link className="nav-simple-link" href={href} key={href} aria-current={pathname === href ? "page" : undefined}>{label}</Link>)}
         </nav>
 
