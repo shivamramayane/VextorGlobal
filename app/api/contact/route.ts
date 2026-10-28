@@ -38,7 +38,8 @@ export async function POST(request: Request) {
 
   const apiKey = process.env.RESEND_API_KEY
   if (!apiKey) {
-    return NextResponse.json({ error: "Email delivery isn’t configured yet. Please email hello@vextorglobal.com." }, { status: 503 })
+    console.error("[contact] RESEND_API_KEY is not configured for this deployment")
+    return NextResponse.json({ error: "Email delivery is not configured for this deployment. Please email hello@vextorglobal.com." }, { status: 503 })
   }
 
   const escapeHtml = (value: string) => value.replace(/[&<>"']/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[character] ?? character)
@@ -67,10 +68,38 @@ export async function POST(request: Request) {
     })
 
     if (!mailResponse.ok) {
+      let providerError: { message?: string; name?: string } = {}
+      try {
+        const responseBody: unknown = await mailResponse.json()
+        if (responseBody && typeof responseBody === "object") {
+          const error = (responseBody as { message?: unknown; name?: unknown }).message
+          const name = (responseBody as { name?: unknown }).name
+          providerError = {
+            ...(typeof error === "string" ? { message: error } : {}),
+            ...(typeof name === "string" ? { name } : {}),
+          }
+        }
+      } catch {
+        // Resend did not return a JSON error body; keep the response generic.
+      }
+
+      const providerMessage = providerError.message?.toLowerCase() || ""
+      console.error("[contact] Resend rejected email", { status: mailResponse.status, name: providerError.name })
+
+      if (mailResponse.status === 401) {
+        return NextResponse.json({ error: "The email service key is invalid. Update RESEND_API_KEY in your environment and redeploy." }, { status: 503 })
+      }
+      if (mailResponse.status === 403 || /domain|sender|verified/.test(providerMessage)) {
+        return NextResponse.json({ error: "Resend rejected the sender address. Verify vextorglobal.com in Resend and use a sender on that domain." }, { status: 503 })
+      }
+      if (mailResponse.status === 429) {
+        return NextResponse.json({ error: "The email service is temporarily rate-limited. Please try again shortly or email hello@vextorglobal.com." }, { status: 503 })
+      }
       return NextResponse.json({ error: "Email delivery failed. Please email hello@vextorglobal.com." }, { status: 502 })
     }
     return NextResponse.json({ ok: true }, { status: 201 })
-  } catch {
+  } catch (error) {
+    console.error("[contact] Could not reach Resend", error instanceof Error ? error.name : "unknown_error")
     return NextResponse.json({ error: "Email delivery failed. Please email hello@vextorglobal.com." }, { status: 502 })
   }
 }
