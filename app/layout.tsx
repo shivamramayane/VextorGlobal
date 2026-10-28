@@ -11,21 +11,21 @@ const monoFont = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500", "600
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://vextor-global.vercel.app"),
-  title: { default: "VextorGlobal | Digital products, software, and technology advisory", template: "%s | VextorGlobal" },
-  description: "VextorGlobal designs and builds web platforms, mobile apps, custom software, and cloud systems for businesses.",
+  title: { default: "VextorGlobal | AI agents, automation, and intelligent products", template: "%s | VextorGlobal" },
+  description: "VextorGlobal is an AI agency building AI agents, automation and intelligent digital products, from web and mobile apps to cloud platforms.",
   applicationName: "VextorGlobal",
   icons: { icon: "/favicon.svg" },
   openGraph: {
     type: "website",
     siteName: "VextorGlobal",
-    title: "VextorGlobal | Digital products, software, and technology advisory",
-    description: "VextorGlobal designs and builds web platforms, mobile apps, custom software, and cloud systems for businesses.",
-    images: [{ url: "/og-vextorglobal.png", width: 1200, height: 630, alt: "VextorGlobal digital products, software, and technology advisory" }],
+    title: "VextorGlobal | AI agents, automation, and intelligent products",
+    description: "VextorGlobal is an AI agency building AI agents, automation and intelligent digital products, from web and mobile apps to cloud platforms.",
+    images: [{ url: "/og-vextorglobal.png", width: 1200, height: 630, alt: "VextorGlobal AI agents, automation, and digital products" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "VextorGlobal | Digital products, software, and technology advisory",
-    description: "VextorGlobal designs and builds web platforms, mobile apps, custom software, and cloud systems for businesses.",
+    title: "VextorGlobal | AI agents, automation, and intelligent products",
+    description: "VextorGlobal is an AI agency building AI agents, automation and intelligent digital products, from web and mobile apps to cloud platforms.",
     images: ["/og-vextorglobal.png"],
   },
 }

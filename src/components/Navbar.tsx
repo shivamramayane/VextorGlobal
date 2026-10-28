@@ -9,14 +9,14 @@ const menus = {
   expertise: {
     label: "Expertise",
     groups: [
-      { title: "DIGITAL DELIVERY", items: [["Digital products", "Web platforms and mobile experiences"], ["Intelligent systems", "Custom software and practical AI"], ["Experience design", "Research-led product experiences"]] },
+      { title: "AI & DIGITAL PRODUCTS", items: [["AI solutions", "Agents, automation, and LLM integration"], ["Digital products", "Web and mobile apps with AI built in"], ["Experience design", "Interfaces for AI-powered products"]] },
       { title: "PLATFORM ENGINEERING", items: [["Cloud & security", "Resilient infrastructure by design"], ["Custom software", "Systems, integrations, and automation"], ["IT consulting", "Architecture and transformation"]] },
     ],
   },
   solutions: {
     label: "Solutions",
     groups: [
-      { title: "BY BUSINESS GOAL", items: [["Launch a digital product", "Strategy through production delivery"], ["Modernize operations", "Connect systems and simplify workflows"], ["Scale with confidence", "Cloud, security, and performance"]] },
+      { title: "APPLY AI IN PRACTICE", items: [["Build AI agents", "Connect language models to useful workflows"], ["Add AI to a product", "Bring intelligent features to web and mobile"], ["Plan an AI rollout", "Find value, readiness, and a clear next step"]] },
       { title: "BY INDUSTRY", items: [["Financial services", "Digital systems for complex markets"], ["Healthcare", "Secure and thoughtful experiences"], ["Retail & commerce", "Connected customer and commerce journeys"], ["Logistics", "Clearer tools for moving operations"]] },
     ],
   },
@@ -31,14 +31,14 @@ const menus = {
 
 const routes: Record<string, string> = {
   "Digital products": "/expertise/digital-products",
-  "Intelligent systems": "/expertise/intelligent-systems",
+  "AI solutions": "/expertise/intelligent-systems",
   "Experience design": "/expertise/experience-design",
   "Cloud & security": "/expertise/cloud-security",
   "Custom software": "/expertise/custom-software",
   "IT consulting": "/expertise/it-consulting",
-  "Launch a digital product": "/expertise#digital-products",
-  "Modernize operations": "/expertise#custom-software",
-  "Scale with confidence": "/expertise#cloud-security",
+  "Build AI agents": "/expertise/intelligent-systems",
+  "Add AI to a product": "/expertise/digital-products",
+  "Plan an AI rollout": "/expertise/it-consulting",
   "Financial services": "/company#industry-financial-services",
   Healthcare: "/company#industry-healthcare",
   "Retail & commerce": "/company#industry-retail-commerce",
@@ -50,7 +50,6 @@ const routes: Record<string, string> = {
   "Insights": "/insights",
   "Customers": "/customers",
   "Discuss a project": "/contact",
-  "Explore our capabilities": "/expertise",
 }
 
 const simpleLinks = [
@@ -148,7 +147,7 @@ export default function Navbar() {
       {mobileOpen && <motion.nav id="mobile-navigation" aria-label="Mobile navigation" className="mobile-menu-panel" initial={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }} animate={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }} exit={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }} transition={{ duration: .4, ease: [0.22, 1, 0.36, 1] }}>
         <p className="mobile-menu-label">EXPLORE VEXTORGLOBAL</p>
         {[["Expertise", "/expertise"], ["Our approach", "/approach"], ["Work", "/work"], ["Customers", "/customers"], ["Pricing", "/pricing"], ["Insights", "/insights"], ["Company", "/company"], ["Contact", "/contact"]].map(([label, href], index) => <Link key={href} href={href} onClick={closeMenus}><span>{String(index + 1).padStart(2, "0")}</span>{label}<i aria-hidden="true">→</i></Link>)}
-        <p className="mobile-menu-foot">Digital products, software, and technology advisory.</p>
+        <p className="mobile-menu-foot">AI solutions, digital products, and the services behind them.</p>
       </motion.nav>}
     </AnimatePresence>
   </>

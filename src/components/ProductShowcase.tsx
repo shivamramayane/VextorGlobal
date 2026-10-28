@@ -24,7 +24,7 @@ export default function ProductShowcase() {
     <div className="section-shell capability-map-shell">
       <div className="section-heading map-heading">
         <div><Eyebrow number="01 / 06">THE CAPABILITY MAP</Eyebrow><h2>One partner.<br /><em>Every clear next move.</em></h2></div>
-        <p>Start with the challenge in front of you. Bring the right mix of strategy, design, engineering, and delivery together as your needs evolve.</p>
+        <p>AI sits at the center of everything we build. Our other services make it work in the real world.</p>
       </div>
 
       <div className="capability-map-layout">

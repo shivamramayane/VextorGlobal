@@ -62,11 +62,11 @@ export default function Home() {
       <div className="hero-grid-glow" aria-hidden="true" />
       <div className="hero-layout">
         <div className="hero-copy">
-          <Eyebrow>GLOBAL TECHNOLOGY PARTNER</Eyebrow>
-          <Heading id="home-title" as="h1" className="home-title"><span className="hero-title-line">We build digital</span><em className="hero-title-accent">products and software.</em></Heading>
-          <p className="hero-lead">Our senior teams design, build, and modernize web platforms, mobile apps, and cloud systems. We work with your team from the first product decision through delivery.</p>
+          <Eyebrow>AI & TECHNOLOGY PARTNER</Eyebrow>
+          <Heading id="home-title" as="h1" className="home-title"><span className="hero-title-line">AI-powered technology</span><em className="hero-title-accent">that moves business forward.</em></Heading>
+          <p className="hero-lead">We build AI agents, automation and intelligent digital products, and support them with the web, mobile, design and cloud services they run on.</p>
           <div className="hero-actions">
-            <ButtonLink href="/contact" variant="solid">Discuss your project</ButtonLink>
+            <ButtonLink href="/contact" variant="solid">Book a free AI consultation</ButtonLink>
             <ButtonLink href="#capability-map" variant="outline">Explore our capabilities</ButtonLink>
           </div>
           <div className="hero-trust-row">{trustSignals.map((item, index) => <span key={item}>{index > 0 && <i aria-hidden="true" />} {item}</span>)}</div>

@@ -11,16 +11,16 @@ import { ButtonLink, Card, Eyebrow, Heading, InPageNav, Reveal, StatCounter } fr
 type PageType = "expertise" | "approach" | "work" | "company" | "contact" | "not-found"
 
 const pages = {
-  expertise: { eyebrow: "CAPABILITIES", intro: "Strategy, experience, engineering, and operations working as one system—not a collection of disconnected vendors.", image: "/images/capability-map/product-engineering.jpg", imageLabel: "Product engineering tools and circuit components" },
+  expertise: { eyebrow: "AI SOLUTIONS & SUPPORTING SERVICES", intro: "AI agents, automation, and intelligent products sit at the center of our work. Product, design, software, cloud, and advisory services help them perform in real business environments.", image: "/images/capability-map/intelligent-systems.jpg", imageLabel: "Abstract illustration representing artificial intelligence" },
   approach: { eyebrow: "OUR DELIVERY APPROACH", intro: "Our senior teams align business intent, user needs, and technical reality before we build—then deliver in measurable increments.", image: "/images/capability-map/it-consulting.jpg", imageLabel: "Technology specialists reviewing a project plan" },
   work: { eyebrow: "PROJECT CONCEPTS", intro: "Illustrative project concepts show how technology can address a business challenge. They are not client engagements or measured outcomes.", image: "/images/capability-map/custom-software.jpg", imageLabel: "A laptop displaying a software project" },
   company: { eyebrow: "ABOUT VEXTORGLOBAL", intro: "We are strategists, designers, engineers, and operators united by a belief that important technology should be built with care.", image: "/images/capability-map/it-consulting.jpg", imageLabel: "Technology specialists discussing a delivery plan" },
-  contact: { eyebrow: "START A CONVERSATION", intro: "Tell us what needs to change. A senior VextorGlobal specialist will respond within one business day.", image: "/images/capability-map/experience-design.jpg", imageLabel: "A designer working through a digital product concept" },
+  contact: { eyebrow: "BOOK A FREE AI CONSULTATION", intro: "Tell us about the opportunity or workflow you want to improve. A senior VextorGlobal specialist will help you consider a practical next step.", image: "/images/capability-map/experience-design.jpg", imageLabel: "A designer working through a digital product concept" },
   "not-found": { eyebrow: "404 / NOT FOUND", intro: "Return home to continue exploring VextorGlobal.", image: "/images/capability-map/cloud-security.jpg", imageLabel: "Cloud infrastructure and network equipment" },
 } as const
 
 function PageTitle({ type }: { type: PageType }) {
-  if (type === "expertise") return <>Technology expertise, connected <em>end to end.</em></>
+  if (type === "expertise") return <>AI at the center. <em>Services built around it.</em></>
   if (type === "approach") return <>Clarity before code. <em>Outcomes before output.</em></>
   if (type === "work") return <>Work shaped around <em>real needs.</em></>
   if (type === "company") return <>Global perspective. <em>One accountable team.</em></>
@@ -145,7 +145,7 @@ function CompanyPage() {
 
 function ContactPage() {
   return <section className="contact-content section-shell">
-    <div className="contact-form-column"><Eyebrow number="01">TELL US WHAT YOU’RE BUILDING</Eyebrow><h2>Every good engagement starts with <em>a clear conversation.</em></h2><p>Share a little about your project and a senior specialist will respond within one business day.</p><p className="form-security-note">Automated spam filtering is enabled. Your details are used to respond to this enquiry.</p><ContactForm /></div>
+    <div className="contact-form-column"><Eyebrow number="01">TELL US ABOUT THE AI OPPORTUNITY</Eyebrow><h2>Start with <em>a useful question.</em></h2><p>Share the workflow, product, or business challenge you have in mind. A senior specialist will respond within one business day.</p><p className="form-security-note">Automated spam filtering is enabled. Your details are used to respond to this enquiry.</p><ContactForm /></div>
     <aside className="contact-aside"><span className="contact-aside-label">PREFER EMAIL?</span><a href="mailto:hello@vextorglobal.com">hello@vextorglobal.com <span aria-hidden="true">↗</span></a><hr /><span className="contact-aside-label">WHAT TO INCLUDE</span><p>Share the challenge, people affected, and constraints or deadlines you already know.</p><div className="contact-aside-note"><span className="availability-dot" />A senior specialist will respond within one business day</div></aside>
   </section>
 }
