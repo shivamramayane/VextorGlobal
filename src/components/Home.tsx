@@ -4,7 +4,7 @@ import Link from "next/link"
 import Navbar from "./Navbar"
 import Footer from "./Footer"
 import ProductShowcase from "./ProductShowcase"
-import { ArrowIcon, ButtonLink, Card, Eyebrow, Heading, Marquee, Reveal } from "./ui"
+import { ButtonLink, Card, Eyebrow, Heading, Marquee, Reveal } from "./ui"
 import { approachSteps, caseStudies, faqs, freeTools, projectConcepts, stackTools } from "../content"
 
 const principles = [
@@ -96,7 +96,7 @@ export default function Home() {
       <ButtonLink href="/approach" variant="text">Explore our approach</ButtonLink>
     </section>
 
-    <section className="proof-section section-shell" id="impact">
+    <section className="proof-section section-shell" id="outcomes">
       <div className="proof-intro"><Eyebrow number="03">MEASURE WHAT MATTERS</Eyebrow><Heading>Outcomes are the <em>measure.</em></Heading><p>We agree the right signal for each project, establish a baseline, and review progress against it together.</p></div>
       <div className="proof-content">
         <div className="proof-stat-grid outcome-measure-grid">
@@ -129,7 +129,7 @@ export default function Home() {
     <section className="principles-section section-shell">
       <div className="principles-heading"><Eyebrow number="07">A BETTER WAY TO BUILD</Eyebrow><Heading>Value from the <em>first conversation.</em></Heading><p>Good partnerships make the work clearer at every step.</p></div>
       <div className="principle-list">
-        {principles.map(([title, text], index) => <Reveal key={title}><article className="principle-row"><span>0{index + 1}</span><h3>{title}</h3><p>{text}</p><ArrowIcon /></article></Reveal>)}
+        {principles.map(([title, text], index) => <Reveal key={title}><article className="principle-row"><span>0{index + 1}</span><h3>{title}</h3><p>{text}</p></article></Reveal>)}
       </div>
     </section>
 
@@ -141,7 +141,7 @@ export default function Home() {
     <section className="case-section section-shell" id="selected-work">
       <div className="section-heading"><div><Eyebrow number="09">CONCEPT PROJECTS</Eyebrow><Heading>Designed for <em>real-world needs.</em></Heading></div><p>Fictional project concepts explore practical product and platform challenges. They are not client work or measured outcomes.</p></div>
       <div className="case-grid">
-        {caseStudies.map((study, index) => <Reveal className="case-card-wrap" delay={index * .08} key={study.id}><Link className="case-card" href={`/work#${study.id}`}>
+        {caseStudies.map((study, index) => <Reveal className="case-card-wrap" delay={index * .08} key={study.id}><Link className="case-card" href={`/work/${study.id}`}>
           <span className="case-card-number">CONCEPT {study.number}</span><Eyebrow>{study.industry}</Eyebrow><h3>{study.client} · {study.product}</h3><p>{study.title}</p><div><span>{study.outcome}</span><i aria-hidden="true">→</i></div>
         </Link></Reveal>)}
       </div>

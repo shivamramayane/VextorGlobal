@@ -117,7 +117,7 @@ function WorkPage() {
     <div className="interior-section-intro" id="case-studies"><Eyebrow number="01">FICTIONAL PROJECT CONCEPTS</Eyebrow><Heading>Technology with a <em>business case.</em></Heading><p>These illustrative concepts use fictional company and product names. They show possible directions for work and are not client projects or measured outcomes.</p></div>
     <div className="work-case-list">
       {caseStudies.map((study, index) => <Reveal key={study.id} delay={index * .08}><article id={study.id} className="work-case-card">
-        <span className="work-case-number">CONCEPT {study.number}</span><div className="work-case-copy"><Eyebrow>{study.industry}</Eyebrow><p className="work-project-client">{study.client} / {study.product}</p><h2>{study.title}</h2><Link href="/contact">Discuss a similar challenge <span aria-hidden="true">→</span></Link></div><div className="work-case-stat work-case-todo"><strong>CONCEPT</strong><span>{study.outcome}</span></div>
+        <span className="work-case-number">CONCEPT {study.number}</span><div className="work-case-copy"><Eyebrow>{study.industry}</Eyebrow><p className="work-project-client">{study.client} / {study.product}</p><h2>{study.title}</h2><Link href={`/work/${study.id}`}>Read concept brief <span aria-hidden="true">→</span></Link></div><div className="work-case-stat work-case-todo"><strong>CONCEPT</strong><span>{study.outcome}</span></div>
       </article></Reveal>)}
     </div>
     <div className="case-endnote"><span>VEXTORGLOBAL / CONCEPT WORK</span><p>Project names, products, and briefs shown here are fictional. No client result is implied.</p></div>

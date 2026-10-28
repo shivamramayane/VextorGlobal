@@ -72,10 +72,6 @@ export function Marquee({ items, label, slow = false }: { items: string[]; label
   </div>
 }
 
-export function ArrowIcon() {
-  return <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-}
-
 export function InPageNav({ links }: { links: Array<{ label: string; href: string }> }) {
   return <nav className="in-page-nav" aria-label="On this page">{links.map((link) => <a href={link.href} key={link.href}>{link.label}</a>)}</nav>
 }
