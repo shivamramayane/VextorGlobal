@@ -4,7 +4,7 @@ const footerGroups = [
   { label: "CAPABILITIES", links: [["AI solutions", "/expertise/intelligent-systems"], ["Digital products", "/expertise/digital-products"], ["Experience design", "/expertise/experience-design"], ["Cloud & security", "/expertise/cloud-security"], ["Custom software", "/expertise/custom-software"], ["IT consulting", "/expertise/it-consulting"]] },
   { label: "AI SOLUTIONS", links: [["Build AI agents", "/expertise/intelligent-systems"], ["Add AI to a product", "/expertise/digital-products"], ["Plan an AI rollout", "/expertise/it-consulting"]] },
   { label: "RESOURCES", links: [["Customers", "/customers"], ["Engagement models", "/pricing"], ["Insights", "/insights"], ["Our approach", "/approach"], ["Work", "/work"], ["Company", "/company"]] },
-  { label: "GET IN TOUCH", links: [["hello@vextorglobal.com", "mailto:hello@vextorglobal.com"], ["Contact form", "/contact"]] },
+  { label: "GET IN TOUCH", links: [["hello@vextorglobal.com", "mailto:hello@vextorglobal.com"], ["Contact form", "/contact"], ["LinkedIn", "https://www.linkedin.com/company/vextorglobal"]] },
 ] as const
 
 export default function Footer() {
@@ -17,7 +17,9 @@ export default function Footer() {
       </div>
       {footerGroups.map((group) => <div className="footer-group" key={group.label}>
         <p>{group.label}</p>
-        {group.links.map(([label, href]) => <Link href={href} key={href}>{label}<span aria-hidden="true">{href.startsWith("mailto:") ? "↗" : "→"}</span></Link>)}
+        {group.links.map(([label, href]) => href.startsWith("https://")
+          ? <a href={href} key={href} target="_blank" rel="noopener noreferrer">{label}<span aria-hidden="true">↗</span></a>
+          : <Link href={href} key={href}>{label}<span aria-hidden="true">{href.startsWith("mailto:") ? "↗" : "→"}</span></Link>)}
       </div>)}
     </div>
     <div className="footer-bottom"><span>© 2026 VextorGlobal. Indore, Madhya Pradesh, India. · No analytics or advertising cookies.</span><nav aria-label="Legal"><Link href="/privacy">Privacy Notice</Link><Link href="/terms">Terms</Link><Link href="/privacy#cookies">Cookie notice</Link></nav></div>
