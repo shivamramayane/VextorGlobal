@@ -30,6 +30,7 @@ const monoFont = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500", "600
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  other: { "google-adsense-account": "ca-pub-4362515316719150" },
   title: { default: "VextorGlobal | AI agents, automation, and intelligent products", template: "%s | VextorGlobal" },
   description: "VextorGlobal is an AI agency building AI agents, automation and intelligent digital products, from web and mobile apps to cloud platforms.",
   applicationName: "VextorGlobal",
