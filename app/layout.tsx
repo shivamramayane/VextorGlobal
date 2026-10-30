@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
 import { IBM_Plex_Mono, Instrument_Serif, Manrope, Outfit } from "next/font/google"
+import Script from "next/script"
 import "../src/index.css"
 import SmoothScrollProvider from "../src/components/SmoothScrollProvider"
 import { SITE_URL } from "../src/metadata"
@@ -48,5 +49,5 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
-  return <html lang="en" className={`${bodyFont.variable} ${displayFont.variable} ${editorialFont.variable} ${monoFont.variable}`}><body><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema).replace(/</g, "\\u003c") }} /><SmoothScrollProvider>{children}</SmoothScrollProvider></body></html>
+  return <html lang="en" className={`${bodyFont.variable} ${displayFont.variable} ${editorialFont.variable} ${monoFont.variable}`}><body><Script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4362515316719150" strategy="beforeInteractive" async crossOrigin="anonymous" /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema).replace(/</g, "\\u003c") }} /><SmoothScrollProvider>{children}</SmoothScrollProvider></body></html>
 }
